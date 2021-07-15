@@ -71,6 +71,7 @@
 // Windows 10 shortcuts: change desktop to the left/right
 #define DESKLFT LCTL(LGUI(KC_LEFT))
 #define DESKRGT LCTL(LGUI(KC_RGHT))
+#define SCRNSHT LGUI(LSFT(KC_S))
 
 
 // Application-specific shortcuts

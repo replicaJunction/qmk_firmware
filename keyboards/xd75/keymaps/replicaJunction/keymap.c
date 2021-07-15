@@ -37,10 +37,10 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_BASE] = LAYOUT_ortho_5x15(
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_MINS, KC_GRV,  KC_EQL,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-        KC_EQL,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_LBRC, KC_BSLS, KC_RBRC, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
-        KC_MINS, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    SALTTAB, KC_UP,   KC_END,  KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
+        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_LBRC, KC_BSLS, KC_RBRC, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
+        KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    SALTTAB, KC_UP,   KC_END,  KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
         NUMWORD, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_LEFT, KC_DOWN, KC_RGHT, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, CAPWORD,
-        KC_LCTL, KC_LGUI, KC_LALT, MO_FN,   ESC_SFT, BSP_SYM, CTL_DEL, KC_ENT,  ALT_ENT, SPC_NAV, TAB_SFT, MO_FN,   KC_RALT, KC_RGUI, KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, MO_FN,   KC_LSFT, BSP_SYM, CTL_DEL, KC_ENT,  ALT_ENT, SPC_NAV, KC_RSFT, KC_MINS, KC_QUOT, KC_EQL,  KC_RCTL
     ),
 
 
@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, KC_AT,   KC_LT,   KC_DLR,  KC_GT,   XXXXXXX, _______, _______, _______, XXXXXXX, KC_LBRC, KC_UNDS, KC_RBRC, XXXXXXX, _______,
         _______, KC_BSLS, KC_LPRN, KC_DQUO, KC_RPRN, KC_HASH, _______, _______, _______, KC_PERC, KC_LCBR, KC_EQL,  KC_RCBR, KC_PIPE, _______,
-        _______, KC_EXLM, KC_COLN, KC_ASTR, KC_PLUS, XXXXXXX, _______, _______, _______, XXXXXXX, KC_AMPR, KC_CIRC, KC_TILD, KC_GRV,  _______,
+        _______, KC_EXLM, KC_COLN, KC_ASTR, KC_PLUS, KC_MINS, _______, _______, _______, XXXXXXX, KC_AMPR, KC_CIRC, KC_TILD, KC_GRV,  _______,
         _______, _______, _______, _______, _______, ooooooo, _______, _______, _______, ooooooo, _______, _______, _______, _______, _______
     ),
 
@@ -92,8 +92,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_NAVIGATION] = LAYOUT_ortho_5x15(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, OS_UNDO, OS_CUT,  OS_PAST, OS_COPY, OS_SALL, _______, _______, _______, KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_DEL,  _______,
-        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______, _______, _______, _______, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC, _______,
-        _______, WIN_V,   _______, _______, OS_FIND, SEARCH,  _______, _______, _______, _______, SFT_TAB, KC_TAB,  KC_APP,  KC_PSCR, _______,
+        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_ESC,  _______, _______, _______, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC, _______,
+        _______, WIN_V,   _______, _______, OS_FIND, SEARCH,  _______, _______, _______, SCRNSHT, SFT_TAB, KC_TAB,  KC_APP,  KC_PSCR, _______,
         _______, _______, _______, _______, _______, ooooooo, _______, _______, _______, ooooooo, _______, _______, _______, _______, _______
     ),
 

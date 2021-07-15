@@ -27,6 +27,7 @@ enum additional_keyboard_layers {
 #define SPC_NAV LT(L_NAVIGATION, KC_SPC)
 
 #define MO_FN MO(L_FN)
+#define MO_GAM2 MO(L_GAMING2)
 #define MO_MAC MO(L_MACROS)
 #define MO_SLED MO(L_SYSLEDS)
 
@@ -41,10 +42,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [L_BASE] = LAYOUT_ergodox(
     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_MINS,
-    KC_EQL,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    NUMWORD,
-    KC_MINS, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,
+    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    NUMWORD,
+    KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_RBRC,
-    KC_LCTL, KC_LGUI ,KC_LALT, MO_FN,   ESC_SFT,
+    KC_LCTL, KC_LGUI ,KC_LALT, MO_FN,   KC_LSFT,
                                                  KC_HOME, KC_END,
                                                           KC_PGUP,
                                         BSP_SYM, CTL_DEL, KC_PGDN,
@@ -53,32 +54,75 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CAPWORD, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
              KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
     KC_LOCK, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                      TAB_SFT, MO_FN,   KC_RALT, KC_RGUI, MO_SLED,
+                      KC_RSFT, KC_MINS, KC_QUOT, KC_EQL,  MO_SLED,
     KC_LEFT, KC_RGHT,
     KC_UP,
     KC_DOWN, ALT_ENT, SPC_NAV
 ),
 
 
+// QWERTY gaming layers
 [L_GAMING] = LAYOUT_ergodox(
-    KC_GRV, _______,_______,_______,_______,_______,_______,
-    KC_TAB, _______,_______,_______,_______,_______,_______,
-    KC_ESC, KC_A,   KC_R,   KC_S,   KC_T,   _______,
-    KC_LSFT,_______,_______,KC_C,   KC_D,   _______,_______,
-    _______,_______,KC_TAB, KC_LALT,KC_LCTL,
-                                            KC_LOCK,_______,
-                                                    _______,
-                                    KC_SPC, KC_LSFT,_______,
+    KC_GRV, KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_MINS,
+    _______,KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,
+    KC_LALT,KC_ESC, KC_A,   KC_S,   KC_D,   KC_F,
+    _______,KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,
+    MO_GAM2,KC_LCTL,KC_TAB, KC_LALT,KC_LCTL,
+                                            KC_LOCK,KC_EQL,
+                                                    KC_MINS,
+                                    KC_SPC, KC_LSFT,KC_LALT,
 
-    ooooooo,_______,_______,_______,_______,_______,_______,
-    _______,_______,_______,_______,_______,_______,_______,
-            _______,KC_N,   KC_E,   KC_I,   KC_O,   _______,
-    _______,_______,_______,_______,_______,_______,_______,
+    ooooooo,KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   _______,
+    KC_G,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   _______,
+            KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,_______,
+    KC_LOCK,KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,_______,
                     MO_FN,  KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,
     KC_BTN3,_______,
     KC_BTN2,
     KC_BTN1,KC_ENT, KC_BSPC
 ),
+
+
+[L_GAMING2] = LAYOUT_ergodox(
+    _______,KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   _______,
+    _______,_______,_______,_______,_______,_______,_______,
+    _______,_______,_______,_______,_______,_______,
+    _______,_______,_______,_______,_______,_______,_______,
+    ooooooo,_______,_______,_______,_______,
+                                            _______,_______,
+                                                    _______,
+                                    _______,_______,_______,
+
+    _______,_______,_______,_______,_______,_______,_______,
+    KC_CAPS,_______,_______,_______,_______,_______,_______,
+            _______,_______,_______,_______,_______,_______,
+    _______,_______,_______,_______,_______,_______,_______,
+                    _______,_______,_______,_______,_______,
+    _______,_______,
+    _______,
+    _______,_______,_______
+),
+
+
+// [L_GAMING] = LAYOUT_ergodox(
+//     KC_GRV, _______,_______,_______,_______,_______,_______,
+//     KC_TAB, _______,_______,_______,_______,_______,_______,
+//     KC_ESC, KC_A,   KC_R,   KC_S,   KC_T,   _______,
+//     KC_LSFT,_______,_______,KC_C,   KC_D,   _______,_______,
+//     _______,_______,KC_TAB, KC_LALT,KC_LCTL,
+//                                             KC_LOCK,_______,
+//                                                     _______,
+//                                     KC_SPC, KC_LSFT,_______,
+
+//     ooooooo,_______,_______,_______,_______,_______,_______,
+//     _______,_______,_______,_______,_______,_______,_______,
+//             _______,KC_N,   KC_E,   KC_I,   KC_O,   _______,
+//     _______,_______,_______,_______,_______,_______,_______,
+//                     MO_FN,  KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,
+//     KC_BTN3,_______,
+//     KC_BTN2,
+//     KC_BTN1,KC_ENT, KC_BSPC
+// ),
 
 
 [L_NUMBERS] = LAYOUT_ergodox(
@@ -126,7 +170,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [L_NAVIGATION] = LAYOUT_ergodox(
     _______,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  _______,
     _______,OS_UNDO,OS_CUT, OS_PAST,OS_COPY,OS_SALL,_______,
-    _______,KC_LGUI,KC_LSFT,KC_LALT,KC_LCTL,_______,
+    _______,KC_LGUI,KC_LALT,KC_LSFT,KC_LCTL,_______,
     _______,WIN_V,  _______,_______,OS_FIND,SEARCH, _______,
     _______,_______,_______,_______,_______,
                                             _______,_______,
@@ -136,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11,
     _______,KC_PGUP,KC_HOME,KC_UP,  KC_END, KC_DEL, KC_F12,
             KC_PGDN,KC_LEFT,KC_DOWN,KC_RGHT,KC_BSPC,_______,
-    _______,_______,SFT_TAB,KC_TAB, KC_APP, KC_PSCR,_______,
+    _______,SCRNSHT,SFT_TAB,KC_TAB, KC_APP, KC_PSCR,_______,
                     _______,_______,_______,_______,_______,
     _______,_______,
     _______,
@@ -145,17 +189,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 [L_FN] = LAYOUT_ergodox(
-    _______,_______,_______,_______,_______,_______,_______,
-    _______,QK_VERS,_______,DM_REC2,DM_REC1,DM_RSTP,_______,
-    _______,QK_MAKE,_______,DM_PLY2,DM_PLY1,_______,
-    _______,QK_FLSH,K_SECR1,K_SECR2,K_SECR3,K_SECR4,_______,
+    _______,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  _______,
+    _______,QK_MAKE,_______,_______,_______,_______,_______,
+    _______,QK_FLSH,_______,_______,_______,_______,
+    _______,QK_VERS,K_SECR1,K_SECR2,K_SECR3,K_SECR4,_______,
     _______,_______,_______,ooooooo,_______,
                                             _______,_______,
                                                     _______,
                                     KC_LCTL,_______,_______,
 
-    _______,_______,_______,_______,_______,_______,_______,
-    _______,KC_VOLU,KC_F9,  KC_F10, KC_F11, KC_F12, _______,
+    _______,KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11,
+    _______,KC_VOLU,KC_F9,  KC_F10, KC_F11, KC_F12, KC_F12,
             KC_MUTE,KC_F5,  KC_F6,  KC_F7,  KC_F8,  _______,
     _______,KC_VOLD,KC_F1,  KC_F2,  KC_F3,  KC_F4,  _______,
                     _______,ooooooo,_______,_______,_______,
@@ -167,9 +211,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [L_MACROS] = LAYOUT_ergodox(
     _______,_______,_______,_______,_______,_______,_______,
-    _______,_______,_______,DM_REC2,DM_REC1,_______,_______,
-    _______,_______,_______,DM_PLY2,DM_PLY1,DM_RSTP,
-    _______,_______,_______,_______,_______,_______,_______,
+    _______,QK_MAKE,_______,DM_REC2,DM_REC1,_______,_______,
+    _______,QK_FLSH,_______,DM_PLY2,DM_PLY1,DM_RSTP,
+    _______,QK_VERS,_______,_______,_______,_______,_______,
     _______,_______,_______,_______,_______,
                                             _______,_______,
                                                     _______,
@@ -328,22 +372,34 @@ void set_leds_by_layer_state(uint32_t layer_state) {
         led_3_on();
         led_board_off();
     }
+    else if (LAYER_ON(layer_state, L_GAMING2)) {
+        led_1_off();
+        led_2_off();
+        led_3_on();
+        led_board_on();
+    }
     else if (LAYER_ON(layer_state, L_GAMING)) {
         led_1_off();
         led_2_off();
         led_3_off();
         led_board_on();
     }
-    else if (LAYER_ON(layer_state, L_NUMBERS)) {
-        led_1_on();
-        led_2_off();
-        led_3_off();
-        led_board_off();
-    }
-    else if (LAYER_ON(layer_state, L_NAVIGATION)) {
+    else if (LAYER_ON(layer_state, L_SYMBOLS)) {
         led_1_off();
         led_2_on();
-        led_3_off();
+        led_3_on();
+        led_board_off();
+    }
+    // else if (LAYER_ON(layer_state, L_NUMBERS)) {
+    //     led_1_on();
+    //     led_2_off();
+    //     led_3_off();
+    //     led_board_off();
+    // }
+    else if (LAYER_ON(layer_state, L_NAVIGATION)) {
+        led_1_off();
+        led_2_off();
+        led_3_on();
         led_board_off();
     }
     else {

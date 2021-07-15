@@ -25,6 +25,11 @@ enum rj_layers {
 
 #ifdef USER_INCLUDE_GAMING_LAYER
     L_GAMING,
+
+#    ifdef USER_INCLUDE_GAMING_LAYER_2
+    L_GAMING2,
+#    endif
+
 #endif
 
     L_NUMBERS,
