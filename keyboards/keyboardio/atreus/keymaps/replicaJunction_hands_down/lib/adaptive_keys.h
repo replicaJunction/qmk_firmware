@@ -1,5 +1,6 @@
 #pragma once
 #include "quantum.h"
+#include "rj_layers.h"
 
 #ifndef ADAPTIVE_TERM
 #   define ADAPTIVE_TERM 200

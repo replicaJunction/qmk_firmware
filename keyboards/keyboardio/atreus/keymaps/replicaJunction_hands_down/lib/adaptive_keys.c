@@ -4,6 +4,12 @@ uint16_t prior_keycode = KC_NO;
 uint16_t prior_keydown = 0;
 
 bool process_record_adaptive_keys(uint16_t keycode, const keyrecord_t *record) {
+    #ifdef USER_INCLUDE_LAYER_GAMING
+    if (IS_LAYER_ON(L_GAMING)) {
+        return true;
+    }
+    #endif
+
     bool return_state = true;
 
     if (record->event.pressed) {

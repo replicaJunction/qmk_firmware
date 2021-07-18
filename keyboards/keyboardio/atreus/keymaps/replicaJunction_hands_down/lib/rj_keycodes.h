@@ -5,6 +5,11 @@
 enum user_keycodes {
     NUMWORD = SAFE_RANGE,
     CAPWORD,
+
+#ifdef USER_INCLUDE_LAYER_GAMING
+    TG_GAME,
+#endif
+
     KEYMAP_SAFE_RANGE
 };
 
@@ -36,7 +41,6 @@ enum user_keycodes {
 #define SPC_NAV LT(L_NAVIGATION, KC_SPC)
 
 #ifdef USER_INCLUDE_LAYER_GAMING
-#   define TG_GAME TG(L_GAMING)
 #   ifdef USER_INCLUDE_LAYER_GAMING_2
 #       define MO_GAM2 MO(L_GAMING2)
 #   endif
