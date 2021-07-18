@@ -45,6 +45,7 @@ ifeq ($(strip $(USER_NUM_WORD_ENABLE)), yes)
 endif
 
 ifeq ($(strip $(COMBO_ENABLE)), yes)
+	VPATH += keyboards/gboards
 	SRC += lib/rj_combos.c
 endif
 

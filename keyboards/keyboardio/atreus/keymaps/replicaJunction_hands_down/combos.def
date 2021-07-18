@@ -1,0 +1,35 @@
+// COMB is a simple combo
+// SUBS is a text SUBStitution using SEND_STRING
+
+//     Combo name     Result              Keys
+
+// Left hand upper row
+COMB(  JK_Z,          KC_Z,               KC_J, KC_K )
+COMB(  FV_Q,          KC_Q,               KC_F, KC_V )
+
+SUBS(  KM_LK,         "lk",               KC_K, KC_M )
+SUBS(  MF_LF,         "lf",               KC_M, KC_F )
+
+// Right hand upper row
+COMB(  UO_SLSH,       KC_SLSH,            KC_U, KC_O )
+
+// Left hand home row
+COMB(  NH_ESC,        KC_ESC,             SFT_N, CTL_H )
+COMB(  SN_SYMB,       OSL(L_SYMBOLS),     ALT_S, SFT_N )
+COMB(  SNH_TAB,       KC_TAB,             ALT_S, SFT_N, CTL_H )
+
+// Right hand home row
+COMB(  AE_BSPC,       KC_BSPC,            CTL_A, SFT_E )
+COMB(  EI_SYMB,       OSL(L_SYMBOLS),     SFT_E, ALT_I )
+COMB(  AEI_CTL_BSPC,  LCTL(KC_BSPC),      CTL_A, SFT_E, ALT_I )
+
+// Left hand bottom row
+COMB(  UNDO_COMBO,    LCTL(KC_Z),         KC_X, KC_G )
+COMB(  CUT_COMBO,     LCTL(KC_X),         KC_X, KC_L )
+COMB(  COPY_COMBO,    LCTL(KC_C),         KC_G, KC_L )
+COMB(  PASTE_COMBO,   LCTL(KC_V),         KC_L, KC_D )
+COMB(  SEL_ALL_COMBO, LCTL(KC_A),         KC_X, KC_D )
+
+// Both hands
+COMB(  D_DOT_NUMWORD, NUMWORD,            KC_D, KC_DOT )
+COMB(  L_EQL_CAPWORD, CAPWORD,            KC_L, KC_EQL )

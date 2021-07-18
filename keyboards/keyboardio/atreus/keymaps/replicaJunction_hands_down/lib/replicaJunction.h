@@ -2,8 +2,8 @@
 
 #include "quantum.h"
 
-#include "rj_keycodes.h"
 #include "rj_layers.h"
+#include "rj_keycodes.h"
 
 
 #ifdef USER_CAPS_WORD_ENABLE
@@ -15,7 +15,10 @@
 #endif
 
 #include "adaptive_keys.h"
-#include "rj_combos.h"
 #include "rj_key_overrides.h"
 #include "process_records.h"
 
+#ifdef COMBO_ENABLE
+#   include "g/keymap_combo.h"
+#   include "rj_combos.h"
+#endif
