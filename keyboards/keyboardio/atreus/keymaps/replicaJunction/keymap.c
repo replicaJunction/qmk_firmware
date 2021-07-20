@@ -6,18 +6,28 @@
 #include QMK_KEYBOARD_H
 #include "config.h"
 #include "replicaJunction.h"
-#include "g/keymap_combo.h"
 
+// Home row mods
+#define GUI_R LGUI_T(KC_R)
+#define ALT_S LALT_T(KC_S)
+#define SFT_N LSFT_T(KC_N)
+#define CTR_T LCTL_T(KC_T) // because CTL_T means something different
+
+#define GUI_C RGUI_T(KC_C)
+#define ALT_I RALT_T(KC_I)
+#define SFT_E RSFT_T(KC_E)
+#define CTL_A LCTL_T(KC_A)
+
+#include "g/keymap_combo.h"
 
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [L_BASE] = LAYOUT(
-    KC_J,   KC_K,   KC_M,   KC_F,   KC_V,                   KC_MINS,KC_U,   KC_O,   KC_Y,   KC_W,
-    // KC_R,   KC_S,   KC_N,   KC_H,   KC_P,                   KC_DOT, KC_A,   KC_E,   KC_I,   KC_C,
-    GUI_R,  ALT_S,  SFT_N,  CTL_H,  KC_P,                   KC_COMM,CTL_A,  SFT_E,  ALT_I,  GUI_C,
-    KC_X,   KC_G,   KC_L,   KC_D,   KC_B,   TG_GAME,KC_NO,  KC_QUES,KC_DOT, KC_EQL, KC_DQUO,KC_QUOT,
-    xxxxxxx,xxxxxxx,xxxxxxx,KC_LSFT,KC_T,   CTL_BSP,KC_ENT, SPC_NAV,KC_RSFT,xxxxxxx,xxxxxxx,xxxxxxx
+    KC_V,   KC_F,   KC_H,   KC_G,   KC_K,                   KC_MINS,KC_U,   KC_O,   KC_Y,   KC_W,
+    GUI_R,  ALT_S,  SFT_N,  CTR_T,  KC_P,                   KC_J,   CTL_A,  SFT_E,  ALT_I,  GUI_C,
+    KC_X,   KC_M,   KC_L,   KC_D,   KC_B,   TG_GAME,KC_NO,  KC_EQL, KC_DOT, KC_COMM,KC_DQUO,KC_QUOT,
+    xxxxxxx,xxxxxxx,xxxxxxx,KC_LSFT,KC_BSPC,CTL_BSP,KC_ENT, SPC_NAV,KC_RSFT,xxxxxxx,xxxxxxx,xxxxxxx
 ),
 
 [L_NAVIGATION] = LAYOUT(
@@ -69,7 +79,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case GUI_R:
         case ALT_S:
         case SFT_N:
-        case CTL_H:
+        case CTR_T:
         case GUI_C:
         case ALT_I:
         case SFT_E:
@@ -90,6 +100,32 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 //     return true;
 // }
+
+
+////////////////////////////////////////////////////////////////////////
+// Key overrides
+////////////////////////////////////////////////////////////////////////
+
+const key_override_t minus_plus_override = ko_make_basic(MOD_MASK_SHIFT,KC_MINS, KC_PLUS);
+const key_override_t dot_colon_override = ko_make_basic(MOD_MASK_SHIFT, KC_DOT,KC_COLN);
+const key_override_t comma_scln_override = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_SCLN);
+const key_override_t eql_unds_override = ko_make_basic(MOD_MASK_SHIFT, KC_EQL, KC_UNDS);
+const key_override_t dquo_ques_override = ko_make_basic(MOD_MASK_SHIFT, KC_DQUO, KC_QUES);
+const key_override_t quote_exlm_override = ko_make_basic(MOD_MASK_SHIFT, KC_QUOT, KC_EXLM);
+const key_override_t slash_pipe_override = ko_make_basic(MOD_MASK_SHIFT, KC_SLSH, KC_PIPE);
+
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &minus_plus_override,
+    &dot_colon_override,
+    &comma_scln_override,
+    &eql_unds_override,
+    &dquo_ques_override,
+    &quote_exlm_override,
+    &slash_pipe_override,
+	NULL // Null terminate the array of overrides!
+};
+
 
 ////////////////////////////////////////////////////////////////////////
 // Combos

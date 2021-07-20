@@ -8,10 +8,6 @@ ifeq ($(strip $(COMBO_ENABLE)), yes)
 #	SRC += features/rj_combos.c
 endif
 
-ifeq ($(strip $(KEY_OVERRIDE_ENABLE)), yes)
-	SRC += features/rj_key_overrides.c
-endif
-
 
 
 ifeq ($(strip $(USER_ADAPTIVE_KEYS_ENABLE)), yes)

@@ -109,14 +109,3 @@
 #       define MO_GAM2 MO(L_GAMING2)
 #   endif
 #endif
-
-// Home row mods
-#define GUI_R LGUI_T(KC_R)
-#define ALT_S LALT_T(KC_S)
-#define SFT_N LSFT_T(KC_N)
-#define CTL_H LCTL_T(KC_H)
-
-#define GUI_C RGUI_T(KC_C)
-#define ALT_I RALT_T(KC_I)
-#define SFT_E RSFT_T(KC_E)
-#define CTL_A LCTL_T(KC_A)
