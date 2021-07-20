@@ -30,11 +30,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 #ifdef COMBO_ENABLE
                 combo_enable();
                 #endif
+                #ifdef KEY_OVERRIDE_ENABLE
+                key_override_on();
+                #endif
                 layer_off(L_GAMING);
             }
             else {
                 #ifdef COMBO_ENABLE
                 combo_disable();
+                #endif
+                #ifdef KEY_OVERRIDE_ENABLE
+                key_override_off();
                 #endif
                 layer_on(L_GAMING);
             }
