@@ -1,0 +1,1 @@
+#define ADAPTIVE_KEY_TERM 1000

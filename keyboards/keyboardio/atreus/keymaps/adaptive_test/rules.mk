@@ -1,0 +1,1 @@
+ADAPTIVE_KEY_ENABLE = yes
