@@ -261,6 +261,9 @@ bool process_record_quantum(keyrecord_t *record) {
 #ifdef COMBO_ENABLE
             process_combo(keycode, record) &&
 #endif
+#ifdef ADAPTIVE_KEY_ENABLE
+            process_adaptive_key(keycode, record) &&
+#endif
 #ifdef PRINTING_ENABLE
             process_printer(keycode, record) &&
 #endif

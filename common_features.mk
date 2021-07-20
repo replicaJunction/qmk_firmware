@@ -665,6 +665,11 @@ ifeq ($(strip $(COMBO_ENABLE)), yes)
     OPT_DEFS += -DCOMBO_ENABLE
 endif
 
+ifeq ($(strip $(ADAPTIVE_KEY_ENABLE)), yes)
+    SRC += $(QUANTUM_DIR)/process_keycode/process_adaptive_key.c
+    OPT_DEFS += -DADAPTIVE_KEY_ENABLE
+endif
+
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
     SRC += $(QUANTUM_DIR)/process_keycode/process_tap_dance.c
     OPT_DEFS += -DTAP_DANCE_ENABLE

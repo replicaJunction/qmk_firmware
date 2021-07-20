@@ -134,6 +134,10 @@ extern layer_state_t layer_state;
 #    include "process_combo.h"
 #endif
 
+#ifdef ADAPTIVE_KEY_ENABLE
+#    include "process_adaptive_key.h"
+#endif
+
 #ifdef KEY_LOCK_ENABLE
 #    include "process_key_lock.h"
 #endif
