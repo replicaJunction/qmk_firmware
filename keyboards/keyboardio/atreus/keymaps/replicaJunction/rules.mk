@@ -1,6 +1,6 @@
 # # Userspace options
+USER_ADAPTIVE_KEYS_ENABLE = yes
 USER_CAPS_WORD_ENABLE = yes
-# USER_HANDS_DOWN_ENABLE = yes
 # USER_MOUSE_JIGGLE_ENABLE = yes
 USER_NUM_WORD_ENABLE = yes
 # USER_SECRETS_ENABLE = yes
@@ -28,31 +28,31 @@ CONSOLE_ENABLE = no
 DEBUG_MATRIX_SCAN_RATE  = no
 DEBUG_MATRIX = no
 GRAVE_ESC_ENABLE = no
-LTO_ENABLE = yes
+# LTO_ENABLE = yes
 MAGIC_ENABLE = no
 SPACE_CADET_ENABLE = no
-VERBOSE = no
+# VERBOSE = no
 
 
-ifeq ($(strip $(USER_CAPS_WORD_ENABLE)), yes)
-	SRC += lib/caps_word.c
-    OPT_DEFS += -DUSER_CAPS_WORD_ENABLE
-endif
+# ifeq ($(strip $(USER_CAPS_WORD_ENABLE)), yes)
+# 	SRC += lib/caps_word.c
+#     OPT_DEFS += -DUSER_CAPS_WORD_ENABLE
+# endif
 
-ifeq ($(strip $(USER_NUM_WORD_ENABLE)), yes)
-	SRC += lib/num_word.c
-    OPT_DEFS += -DUSER_NUM_WORD_ENABLE
-endif
+# ifeq ($(strip $(USER_NUM_WORD_ENABLE)), yes)
+# 	SRC += lib/num_word.c
+#     OPT_DEFS += -DUSER_NUM_WORD_ENABLE
+# endif
 
-ifeq ($(strip $(COMBO_ENABLE)), yes)
-	VPATH += keyboards/gboards
-	SRC += lib/rj_combos.c
-endif
+# ifeq ($(strip $(COMBO_ENABLE)), yes)
+# 	VPATH += keyboards/gboards
+# 	SRC += lib/rj_combos.c
+# endif
 
-ifeq ($(strip $(KEY_OVERRIDE_ENABLE)), yes)
-	SRC += lib/rj_key_overrides.c
-endif
+# ifeq ($(strip $(KEY_OVERRIDE_ENABLE)), yes)
+# 	SRC += lib/rj_key_overrides.c
+# endif
 
 
-SRC += lib/adaptive_keys.c \
-	   lib/process_records.c
+# SRC += lib/adaptive_keys.c \
+# 	   lib/process_records.c
