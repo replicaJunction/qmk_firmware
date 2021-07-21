@@ -14,6 +14,8 @@ There are three components to an adaptive key setup:
 
 First, set `ADAPTIVE_KEY_ENABLE = yes` in your `rules.mk` file. This will enable the feature.
 
+You can optionally define `ADAPTIVE_KEY_TERM = 200` in your `config.h` file. This is the length of the window of time in which the adaptive replacement will be registered instead of the trigger. In other words, in our QW / QU example, tapping Q, then W inside `ADAPTIVE_KEY_TERM` will send `qu`, but waiting until after `ADAPTIVE_KEY_TERM` ends will send `qw` as usual.
+
 Next, define a series of adaptive key definitions in your `keymap.c` file. Each definiton should be a `const adaptive_key_t` value. It's easiest to use the `ADAPTIVE_KEY()` macro to do this, which takes the form `ADAPTIVE_KEY(prefix_keycode, trigger_keycode, replacement_keycode)`.
 
 Finally, define the `adaptive_keys` array, which is an array of pointers to the definitions you just set up. The array should be `NULL`-terminated (the last value in the list should be `NULL`).
