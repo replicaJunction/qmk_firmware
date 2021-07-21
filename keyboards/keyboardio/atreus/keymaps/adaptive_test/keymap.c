@@ -4,6 +4,7 @@
 // This is the canonical layout file for the Quantum project. If you want to add another keyboard,
 
 #include QMK_KEYBOARD_H
+#include "version.h"
 
 enum layer_names {
     _QW,
@@ -13,14 +14,17 @@ enum layer_names {
 
 enum custom_keycodes {
     KC_TADP = SAFE_RANGE,
+    KC_FLSH
 };
+
+#define ALT_ENT LALT_T(KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT( /* Qwerty */
     KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P    ,
     KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN ,
     KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_GRV,  KC_BSLS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH ,
-    KC_ESC, KC_TAB, KC_LGUI,  KC_LSFT, KC_BSPC,  KC_LCTL, KC_LALT, KC_SPC,  MO(_RS), KC_MINS, KC_QUOT, KC_ENT ),
+    KC_ESC, KC_TAB, KC_LGUI,  KC_LSFT, KC_BSPC,  KC_LCTL, ALT_ENT, KC_SPC,  MO(_RS), KC_MINS, KC_QUOT, KC_ENT ),
 
   /*
    *  !       @     up     {    }        ||     pgup    7     8     9    *
@@ -48,20 +52,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed && keycode == KC_TADP) {
-        toggle_adaptive_keys();
-        return false;
+    if (!record->event.pressed) {
+        return true;
     }
 
-    return true;
+    switch (keycode) {
+        case KC_TADP:
+            toggle_adaptive_keys();
+            return false;
+        case KC_FLSH:
+            SEND_STRING("qmk flash --keyboard " QMK_KEYBOARD " --keymap " QMK_KEYMAP);
+            return false;
+        default:
+            return true;
+    }
 }
 
 const adaptive_key_t qw_qu_adaptive = ADAPTIVE_KEY(KC_Q, KC_W, KC_U);
 const adaptive_key_t hj_hi_adaptive = ADAPTIVE_KEY(KC_H, KC_J, KC_I);
 
+// The next few are gimmicks that people would probably never want.
+// These are for testing features, not really meant to be useful.
+
+// Testing use of LALT_T(KC_ENT) as a trigger
+const adaptive_key_t dot_ent_adaptive = ADAPTIVE_KEY(KC_DOT, ALT_ENT, KC_EXLM);
+
+// Testing a custom keycode as the replacement
+const adaptive_key_t qa_make_adaptive = ADAPTIVE_KEY(KC_Q, KC_A, KC_FLSH);
+
 // Adaptive keys settings
 const adaptive_key_t **adaptive_keys = (const adaptive_key_t *[]){
     &qw_qu_adaptive,
     &hj_hi_adaptive,
+    &dot_ent_adaptive,
+    &qa_make_adaptive,
     NULL
 };
