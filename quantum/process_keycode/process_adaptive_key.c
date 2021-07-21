@@ -50,6 +50,14 @@ bool process_adaptive_key(uint16_t keycode, keyrecord_t *record) {
         return true;
     }
 
+    if (!key_down && keycode == prefix_key) {
+        // Releasing the prefix key doesn't affect the logic for the
+        // adaptive key.
+        // Leave active_adaptive_key alone - it gets reset when the
+        // adaptive key itself is released.
+        return true;
+    }
+
     // Try to find an adaptive key that matches the prefix and the
     // current keycode
     for (uint8_t i = 0;; i++) {
@@ -71,14 +79,21 @@ bool process_adaptive_key(uint16_t keycode, keyrecord_t *record) {
             // This is our adaptive key definition
 
             if (!key_down) {
-                unregister_code16(active_adaptive_key->replace_key);
-                prefix_key          = KC_NO;
+                if (check_adaptive_key == active_adaptive_key) {
+                    unregister_code16(active_adaptive_key->replace_key);
+                }
+                else {
+                    unregister_code16(check_adaptive_key->trigger_key);
+                }
+
+                prefix_key = KC_NO;
                 active_adaptive_key = NULL;
                 return false;
             }
 
             if (timer_elapsed(timer) > ADAPTIVE_KEY_TERM) {
                 prefix_key = KC_NO;
+                active_adaptive_key = NULL;
                 return true;
             }
 
