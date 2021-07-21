@@ -2,6 +2,7 @@
 
 static uint16_t              timer                 = 0;
 static bool                  b_adaptive_key_enable = true;
+static uint16_t              prefix_key            = KC_NO;
 static const adaptive_key_t *active_adaptive_key   = NULL;
 
 void enable_adaptive_keys(void) { b_adaptive_key_enable = true; }
@@ -18,16 +19,16 @@ void toggle_adaptive_keys(void) {
 
 void check_adaptive_key_prefix(uint16_t keycode, keyrecord_t *record) {
     for (uint8_t i = 0;; i++) {
-        const adaptive_key_t *const current_adaptive_key = adaptive_keys[i];
+        const adaptive_key_t *const check_adaptive_key = adaptive_keys[i];
 
-        if (current_adaptive_key == NULL) {
+        if (check_adaptive_key == NULL) {
             // End of array
             return;
         }
 
-        if (keycode == current_adaptive_key->prefix_key) {
-            active_adaptive_key = current_adaptive_key;
-            timer               = timer_read();
+        if (keycode == check_adaptive_key->prefix_key) {
+            prefix_key = check_adaptive_key->prefix_key;
+            timer      = timer_read();
             return;
         }
     }
@@ -42,28 +43,51 @@ bool process_adaptive_key(uint16_t keycode, keyrecord_t *record) {
 
     const bool key_down = record->event.pressed;
 
-    if (active_adaptive_key == NULL) {
+    if (prefix_key == KC_NO) {
         // If an adaptive key prefix isn't active, check if one should
         // be activated, but don't affect normal behavior
         check_adaptive_key_prefix(keycode, record);
         return true;
     }
 
-    if (keycode == active_adaptive_key->trigger_key) {
-        if (!key_down) {
-            unregister_code(active_adaptive_key->replace_key);
-            active_adaptive_key = NULL;
-            return false;
-        }
+    // Try to find an adaptive key that matches the prefix and the
+    // current keycode
+    for (uint8_t i = 0;; i++) {
+        const adaptive_key_t *const check_adaptive_key = adaptive_keys[i];
 
-        if (timer_elapsed(timer) > ADAPTIVE_KEY_TERM) {
-            active_adaptive_key = NULL;
+        if (check_adaptive_key == NULL) {
+            // Didn't find one. Handle the key event normally
+
+            if (key_down) {
+                // If a different key was pressed down, no adaptive
+                // behavior can be triggered for this prefix
+                prefix_key = KC_NO;
+            }
+
             return true;
         }
 
-        register_code(active_adaptive_key->replace_key);
-        return false;
+        if (check_adaptive_key->prefix_key == prefix_key && check_adaptive_key->trigger_key == keycode) {
+            // This is our adaptive key definition
+
+            if (!key_down) {
+                unregister_code16(active_adaptive_key->replace_key);
+                prefix_key          = KC_NO;
+                active_adaptive_key = NULL;
+                return false;
+            }
+
+            if (timer_elapsed(timer) > ADAPTIVE_KEY_TERM) {
+                prefix_key = KC_NO;
+                return true;
+            }
+
+            active_adaptive_key = check_adaptive_key;
+            register_code16(active_adaptive_key->replace_key);
+            return false;
+        }
     }
 
+    // Should never be hit
     return true;
 }
