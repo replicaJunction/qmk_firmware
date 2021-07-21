@@ -224,6 +224,11 @@ bool process_record_quantum(keyrecord_t *record) {
 #ifdef HAPTIC_ENABLE
             process_haptic(keycode, record) &&
 #endif  // HAPTIC_ENABLE
+#ifdef ADAPTIVE_KEY_ENABLE
+            // Should run before process_record_kb to allow custom user
+            // keycodes to be adaptive
+            process_adaptive_key(keycode, record) &&
+#endif
 #if defined(VIA_ENABLE)
             process_record_via(keycode, record) &&
 #endif
@@ -260,9 +265,6 @@ bool process_record_quantum(keyrecord_t *record) {
 #endif
 #ifdef COMBO_ENABLE
             process_combo(keycode, record) &&
-#endif
-#ifdef ADAPTIVE_KEY_ENABLE
-            process_adaptive_key(keycode, record) &&
 #endif
 #ifdef PRINTING_ENABLE
             process_printer(keycode, record) &&
