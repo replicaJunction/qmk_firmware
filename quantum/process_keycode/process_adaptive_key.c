@@ -17,23 +17,6 @@ void toggle_adaptive_keys(void) {
     }
 }
 
-void check_adaptive_key_prefix(uint16_t keycode, keyrecord_t *record) {
-    for (uint8_t i = 0;; i++) {
-        const adaptive_key_t *const check_adaptive_key = adaptive_keys[i];
-
-        if (check_adaptive_key == NULL) {
-            // End of array
-            return;
-        }
-
-        if (keycode == check_adaptive_key->prefix_key) {
-            prefix_key = check_adaptive_key->prefix_key;
-            timer      = timer_read();
-            return;
-        }
-    }
-}
-
 
 __attribute__ ((__weak__))
 const adaptive_key_t *try_get_adaptive_key_user(uint16_t prefix, uint16_t keycode) {
@@ -41,8 +24,8 @@ const adaptive_key_t *try_get_adaptive_key_user(uint16_t prefix, uint16_t keycod
 }
 
 
-const adaptive_key_t *try_get_adaptive_key(uint16_t prefix, uint16_t keycode) {
-    const adaptive_key_t *user_result = try_get_adaptive_key_user(prefix, keycode);
+const adaptive_key_t *try_get_adaptive_key(uint16_t prefix, uint16_t trigger, bool check_trigger) {
+    const adaptive_key_t *user_result = try_get_adaptive_key_user(prefix, trigger);
     if (user_result != NULL) {
         return user_result;
     }
@@ -56,10 +39,26 @@ const adaptive_key_t *try_get_adaptive_key(uint16_t prefix, uint16_t keycode) {
             return NULL;
         }
 
-        if (check_adaptive_key->prefix_key == prefix && check_adaptive_key->trigger_key == keycode) {
+        if (check_adaptive_key->prefix_key == prefix && (!check_trigger || (check_trigger && check_adaptive_key->trigger_key == trigger))) {
             return check_adaptive_key;
         }
     }
+}
+
+
+__attribute__ ((__weak__))
+const bool is_adaptive_key_prefix_user(uint16_t keycode) {
+    return false;
+}
+
+
+const bool is_adaptive_key_prefix(uint16_t keycode) {
+    if (is_adaptive_key_prefix_user(keycode)) {
+        return true;
+    }
+
+    const adaptive_key_t *possible_adaptive_key = try_get_adaptive_key(keycode, KC_NO, false);
+    return (possible_adaptive_key != NULL);
 }
 
 
@@ -86,7 +85,10 @@ bool process_adaptive_key(uint16_t keycode, keyrecord_t *record) {
     if (key_down && prefix_key == KC_NO) {
         // If an adaptive key prefix isn't active, check if one should
         // be activated, but don't affect normal behavior
-        check_adaptive_key_prefix(keycode, record);
+        if (is_adaptive_key_prefix(keycode)) {
+            prefix_key = keycode;
+            timer      = timer_read();
+        }
         return true;
     }
 
@@ -96,7 +98,7 @@ bool process_adaptive_key(uint16_t keycode, keyrecord_t *record) {
         return true;
     }
 
-    const adaptive_key_t *found_adaptive_key = try_get_adaptive_key(prefix_key, keycode);
+    const adaptive_key_t *found_adaptive_key = try_get_adaptive_key(prefix_key, keycode, true);
     if (found_adaptive_key == NULL) {
         // This doesn't look like an adaptive key
 
