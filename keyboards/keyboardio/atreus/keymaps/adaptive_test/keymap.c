@@ -91,6 +91,14 @@ const adaptive_key_t **adaptive_keys = (const adaptive_key_t *[]){
 
 const adaptive_key_t vowel_dot_bang_adaptive = ADAPTIVE_KEY(KC_NO, KC_DOT, KC_EXLM);
 
+const bool is_adaptive_key_prefix_user(uint16_t keycode) {
+    if (keycode == KC_A || keycode == KC_E || keycode == KC_I || keycode == KC_O || keycode == KC_U) {
+        return true;
+    }
+
+    return false;
+}
+
 const adaptive_key_t *try_get_adaptive_key_user(uint16_t prefix, uint16_t keycode) {
     if (keycode == KC_DOT && (prefix == KC_A || prefix == KC_E || prefix == KC_I || prefix == KC_O || prefix == KC_U)) {
         return &vowel_dot_bang_adaptive;
