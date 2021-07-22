@@ -59,7 +59,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 ### Adaptive keys and dual-role keys
 
-An `MT()` or `LT()` keycode cannot be used as a replacement keycode in an adaptive key (the key will still work as a tap key, but its hold behavior will never activate). Many other advanced QMK functions are not available in an adaptive key replacement.
+An `MT()` or `LT()` keycode cannot be used as a replacement keycode in an adaptive key (the key will still work as a tap key, but its hold behavior will never activate). Custom keycodes, macros, or anything else that isn't a [basic keycode](keycodes_basic.md) also cannot be used for replacements.
 
 Adaptive keys can use `MT()` or `LT()` keycodes as a trigger, but you need to include the whole `MT()` or `LT()` definition in the adaptive key definition in order for the adaptive keys code to recognize the keycode. The adaptive key will not be recognized if you include only the inner "tap" keycode.
 
