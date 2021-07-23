@@ -1,9 +1,7 @@
 #include "process_adaptive_key.h"
+#include "print.h"
 
-static uint16_t              timer                 = 0;
 static bool                  b_adaptive_key_enable = true;
-static uint16_t              prefix_key            = KC_NO;
-static const adaptive_key_t *active_adaptive_key   = NULL;
 
 void enable_adaptive_keys(void) { b_adaptive_key_enable = true; }
 
@@ -18,49 +16,94 @@ void toggle_adaptive_keys(void) {
 }
 
 
-__attribute__ ((__weak__))
-const adaptive_key_t *try_get_adaptive_key_user(uint16_t prefix, uint16_t keycode) {
-    return NULL;
-}
-
-
-const adaptive_key_t *try_get_adaptive_key(uint16_t prefix, uint16_t trigger, bool check_trigger) {
-    const adaptive_key_t *user_result = try_get_adaptive_key_user(prefix, trigger);
-    if (user_result != NULL) {
-        return user_result;
+static inline bool _process_adaptive_key_predicate(qk_adaptive_key_state_t *state, uint16_t keycode, keyrecord_t *record, qk_adaptive_key_keyevent_predicate_fn_t pred) {
+    if (pred) {
+        return pred(state, keycode, record);
     }
 
-
-    for (uint8_t i = 0;; i++) {
-        const adaptive_key_t *const check_adaptive_key = adaptive_keys[i];
-
-        if (check_adaptive_key == NULL) {
-            // Reached the end of the list
-            return NULL;
-        }
-
-        if (check_adaptive_key->prefix_key == prefix && (!check_trigger || (check_trigger && check_adaptive_key->trigger_key == trigger))) {
-            return check_adaptive_key;
-        }
-    }
-}
-
-
-__attribute__ ((__weak__))
-const bool is_adaptive_key_prefix_user(uint16_t keycode) {
     return false;
 }
 
+static inline void _process_adaptive_key_fn(qk_adaptive_key_state_t *state, qk_adaptive_key_keyevent_fn_t fn) {
+    if (fn) {
+        fn(state);
+    }
+}
 
-const bool is_adaptive_key_prefix(uint16_t keycode) {
-    if (is_adaptive_key_prefix_user(keycode)) {
+
+bool process_single_adaptive_key(qk_adaptive_key_t *current, uint16_t keycode, keyrecord_t *record) {
+    const bool key_down = record->event.pressed;
+    qk_adaptive_key_state_t *state = &current->state;
+
+    #define IS_LISTENING_FOR_PREFIX (!state->is_trigger_pressed && !state->is_listening_for_trigger && !state->is_behavior_active)
+
+#ifdef ADAPTIVE_KEY_DEBUG_ENABLE
+    uprintf("\nprocess_single_adaptive_key :: behavior active: %b, listening for trigger: %b, prefix pressed: %b, trigger pressed: %b\n", state->is_behavior_active, state->is_listening_for_trigger, state->is_prefix_pressed, state->is_trigger_pressed);
+#endif
+
+    if (_process_adaptive_key_predicate(state, keycode, record, current->fn.is_prefix_key)) {
+        state->is_prefix_pressed = key_down;
+
+#ifdef ADAPTIVE_KEY_DEBUG_ENABLE
+        uprintf("* is_prefix_pressed changed to %b\n", state->is_prefix_pressed);
+#endif
+
+        if (key_down && IS_LISTENING_FOR_PREFIX) {
+#ifdef ADAPTIVE_KEY_DEBUG_ENABLE
+            print("* Start listening for trigger\n");
+#endif
+
+            state->is_listening_for_trigger = true;
+            state->timer = timer_read();
+        }
         return true;
     }
 
-    const adaptive_key_t *possible_adaptive_key = try_get_adaptive_key(keycode, KC_NO, false);
-    return (possible_adaptive_key != NULL);
-}
+    if (_process_adaptive_key_predicate(state, keycode, record, current->fn.is_trigger_key)) {
+        state->is_trigger_pressed = key_down;
 
+#ifdef ADAPTIVE_KEY_DEBUG_ENABLE
+        uprintf("* is_trigger_pressed changed to %b\n", state->is_trigger_pressed);
+#endif
+
+        if (key_down) {
+            state->is_listening_for_trigger = false;
+
+            if (timer_elapsed(state->timer) > ADAPTIVE_KEY_TERM) {
+
+#ifdef ADAPTIVE_KEY_DEBUG_ENABLE
+                uprintf("* Exceeded ADAPTIVE_KEY_TERM; not using adaptive behavior (tmr: %u, ADAPTIVE_KEY_TERM: %u)\n", tmr, ADAPTIVE_KEY_TERM);
+#endif
+
+                state->is_behavior_active = false;
+                return true;
+            }
+            else {
+#ifdef ADAPTIVE_KEY_DEBUG_ENABLE
+                uprintf("* Starting adaptive behavior\n");
+#endif
+                state->is_behavior_active = true;
+                _process_adaptive_key_fn(state, current->fn.on_adaptive_pressed);
+                return false;
+            }
+        }
+        else {
+            if (!state->is_behavior_active) {
+                return true;
+            }
+            else {
+#ifdef ADAPTIVE_KEY_DEBUG_ENABLE
+                print("* Releasing adaptive behavior\n");
+#endif
+                _process_adaptive_key_fn(state, current->fn.on_adaptive_released);
+                state->is_behavior_active = false;
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
 
 bool process_adaptive_key(uint16_t keycode, keyrecord_t *record) {
     // @TODO keycodes for enable / disable?
@@ -69,69 +112,43 @@ bool process_adaptive_key(uint16_t keycode, keyrecord_t *record) {
         return true;
     }
 
-    const bool key_down = record->event.pressed;
-
-    if (active_adaptive_key != NULL) {
-        if (!key_down && keycode == active_adaptive_key->trigger_key) {
-            unregister_code16(active_adaptive_key->replace_key);
-            prefix_key = KC_NO;
-            active_adaptive_key = NULL;
+    for (uint16_t idx = 0; idx < ADAPTIVE_KEY_LEN; idx++) {
+        // Handle adaptive keys in sequence. Any adaptive key can return false
+        // (which is the QMK convention for "key event has been handled") and
+        // the function will return early. If no adaptive key handles the
+        // key event, yield processing back to the rest of QMK.
+        qk_adaptive_key_t * current_key = &adaptive_keys[idx];
+        if (!process_single_adaptive_key(current_key, keycode, record)) {
             return false;
         }
-
-        return true;
     }
 
-    if (key_down && prefix_key == KC_NO) {
-        // If an adaptive key prefix isn't active, check if one should
-        // be activated, but don't affect normal behavior
-        if (is_adaptive_key_prefix(keycode)) {
-            prefix_key = keycode;
-            timer      = timer_read();
-        }
-        return true;
+    return true;
+}
+
+
+bool qk_adaptive_key_is_prefix_key(qk_adaptive_key_state_t *state, uint16_t keycode, keyrecord_t *record) {
+    return keycode == state->prefix_keycode;
+}
+
+bool qk_adaptive_key_is_trigger_key(qk_adaptive_key_state_t *state, uint16_t keycode, keyrecord_t *record) {
+    return keycode == state->trigger_keycode;
+}
+
+void qk_adaptive_key_on_adaptive_pressed(qk_adaptive_key_state_t *state) {
+    if (state->is_behavior_active) {
+        register_code16(state->replace_keycode);
     }
-
-    if (!key_down && keycode == prefix_key) {
-        // Releasing the prefix key doesn't affect the logic for the
-        // adaptive key.
-        return true;
+    else {
+        register_code16(state->trigger_keycode);
     }
+}
 
-    const adaptive_key_t *found_adaptive_key = try_get_adaptive_key(prefix_key, keycode, true);
-    if (found_adaptive_key == NULL) {
-        // This doesn't look like an adaptive key
-
-        if (key_down) {
-            // If the user pressed a valid prefix, but then pressed a
-            // different key, do not trigger adaptive behavior.
-            prefix_key = KC_NO;
-        }
-
-        // Handle the key event normally
-        return true;
+void qk_adaptive_key_on_adaptive_released(qk_adaptive_key_state_t *state) {
+    if (state->is_behavior_active) {
+        unregister_code16(state->replace_keycode);
     }
-
-
-    if (!key_down) {
-        if (found_adaptive_key == active_adaptive_key) {
-            unregister_code16(active_adaptive_key->replace_key);
-        }
-        else {
-            unregister_code16(found_adaptive_key->trigger_key);
-        }
-
-        prefix_key = KC_NO;
-        return false;
+    else {
+        unregister_code16(state->trigger_keycode);
     }
-
-    if (timer_elapsed(timer) > ADAPTIVE_KEY_TERM) {
-        prefix_key = KC_NO;
-        active_adaptive_key = NULL;
-        return true;
-    }
-
-    active_adaptive_key = found_adaptive_key;
-    register_code16(active_adaptive_key->replace_key);
-    return false;
 }
