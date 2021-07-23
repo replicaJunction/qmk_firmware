@@ -35,7 +35,7 @@ typedef struct {
 
 
 typedef bool (*qk_adaptive_key_keyevent_predicate_fn_t)(qk_adaptive_key_state_t *state, uint16_t keycode, keyrecord_t *record);
-typedef void (*qk_adaptive_key_keyevent_fn_t)(qk_adaptive_key_state_t *state);
+typedef void (*qk_adaptive_key_keyevent_fn_t)(qk_adaptive_key_state_t *state, keyrecord_t *record);
 
 
 typedef struct {
