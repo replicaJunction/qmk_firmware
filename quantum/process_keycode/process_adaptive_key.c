@@ -24,9 +24,9 @@ static inline bool _process_adaptive_key_predicate(qk_adaptive_key_state_t *stat
     return false;
 }
 
-static inline void _process_adaptive_key_fn(qk_adaptive_key_state_t *state, qk_adaptive_key_keyevent_fn_t fn) {
+static inline void _process_adaptive_key_fn(qk_adaptive_key_state_t *state, keyrecord_t *record, qk_adaptive_key_keyevent_fn_t fn) {
     if (fn) {
-        fn(state);
+        fn(state, record);
     }
 }
 
@@ -83,7 +83,7 @@ bool process_single_adaptive_key(qk_adaptive_key_t *current, uint16_t keycode, k
                 uprintf("* Starting adaptive behavior\n");
 #endif
                 state->is_behavior_active = true;
-                _process_adaptive_key_fn(state, current->fn.on_adaptive_pressed);
+                _process_adaptive_key_fn(state, record, current->fn.on_adaptive_event);
                 return false;
             }
         }
@@ -95,7 +95,7 @@ bool process_single_adaptive_key(qk_adaptive_key_t *current, uint16_t keycode, k
 #ifdef ADAPTIVE_KEY_DEBUG_ENABLE
                 print("* Releasing adaptive behavior\n");
 #endif
-                _process_adaptive_key_fn(state, current->fn.on_adaptive_released);
+                _process_adaptive_key_fn(state, record, current->fn.on_adaptive_event);
                 state->is_behavior_active = false;
                 return false;
             }
@@ -135,20 +135,11 @@ bool qk_adaptive_key_is_trigger_key(qk_adaptive_key_state_t *state, uint16_t key
     return keycode == state->trigger_keycode;
 }
 
-void qk_adaptive_key_on_adaptive_pressed(qk_adaptive_key_state_t *state) {
-    if (state->is_behavior_active) {
+void qk_adaptive_key_on_adaptive_event(qk_adaptive_key_state_t *state, keyrecord_t *record) {
+    if (record->event.pressed) {
         register_code16(state->replace_keycode);
     }
     else {
-        register_code16(state->trigger_keycode);
-    }
-}
-
-void qk_adaptive_key_on_adaptive_released(qk_adaptive_key_state_t *state) {
-    if (state->is_behavior_active) {
         unregister_code16(state->replace_keycode);
-    }
-    else {
-        unregister_code16(state->trigger_keycode);
     }
 }
