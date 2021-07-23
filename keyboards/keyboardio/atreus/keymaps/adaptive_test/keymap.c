@@ -68,30 +68,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-const adaptive_key_t qw_qu_adaptive = ADAPTIVE_KEY(KC_Q, KC_W, KC_U);
-const adaptive_key_t hj_hi_adaptive = ADAPTIVE_KEY(KC_H, KC_J, KC_I);
 
-// The next few are gimmicks that people would probably never want.
-// These are for testing features, not really meant to be useful.
-
-// Testing use of LALT_T(KC_ENT) as a trigger
-const adaptive_key_t dot_ent_adaptive = ADAPTIVE_KEY(KC_DOT, ALT_ENT, KC_EXLM);
-
-// Testing a custom keycode as the replacement
-const adaptive_key_t qa_make_adaptive = ADAPTIVE_KEY(KC_Q, KC_A, KC_FLSH);
-
-// Adaptive keys settings
-const adaptive_key_t **adaptive_keys = (const adaptive_key_t *[]){
-    &qw_qu_adaptive,
-    &hj_hi_adaptive,
-    &dot_ent_adaptive,
-    &qa_make_adaptive,
-    NULL
-};
-
-const adaptive_key_t vowel_dot_bang_adaptive = ADAPTIVE_KEY(KC_NO, KC_DOT, KC_EXLM);
-
-const bool is_adaptive_key_prefix_user(uint16_t keycode) {
+bool user_is_vowel_prefix_key(qk_adaptive_key_state_t *state, uint16_t keycode, keyrecord_t *record) {
     if (keycode == KC_A || keycode == KC_E || keycode == KC_I || keycode == KC_O || keycode == KC_U) {
         return true;
     }
@@ -99,10 +77,22 @@ const bool is_adaptive_key_prefix_user(uint16_t keycode) {
     return false;
 }
 
-const adaptive_key_t *try_get_adaptive_key_user(uint16_t prefix, uint16_t keycode) {
-    if (keycode == KC_DOT && (prefix == KC_A || prefix == KC_E || prefix == KC_I || prefix == KC_O || prefix == KC_U)) {
-        return &vowel_dot_bang_adaptive;
-    }
 
-    return NULL;
-}
+enum adaptive_key_index {
+    QW_QU,
+    VOWEL_EMPHATIC,
+    END_OF_ADAPTIVE_LIST, // This can be named whatever
+};
+
+// This one is the name that matters
+uint16_t ADAPTIVE_KEY_LEN = END_OF_ADAPTIVE_LIST;
+
+const qk_adaptive_key_t qw_qu_adaptive = ADAPTIVE_KEY(KC_Q, KC_W, KC_U);
+const qk_adaptive_key_t vowel_emphatic_adaptive = ADAPTIVE_KEY_PREFIX_FN(user_is_vowel_prefix_key, KC_DOT, KC_EXLM);
+
+
+qk_adaptive_key_t adaptive_keys[] = {
+    // [QW_QU] = ADAPTIVE_KEY(KC_Q, KC_W, KC_U),
+    [QW_QU] = qw_qu_adaptive,
+    [VOWEL_EMPHATIC] = vowel_emphatic_adaptive,
+};
