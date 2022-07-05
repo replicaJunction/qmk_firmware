@@ -1,4 +1,4 @@
-SRC += replicaJunction.c
+SRC += replicajunction.c
 
 # Only load these source files if the features are enabled. Keyboards can
 # enable or disable these features in their own rules.mk files.

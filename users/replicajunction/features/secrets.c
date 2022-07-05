@@ -29,7 +29,7 @@
 // }
 
 #include QMK_KEYBOARD_H
-#include "replicaJunction.h"
+#include "replicajunction.h"
 #include "secrets.h"
 #include "secret_definitions.h"
 

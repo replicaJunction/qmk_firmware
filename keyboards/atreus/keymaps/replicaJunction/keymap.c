@@ -15,7 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "replicaJunction.h"
+#include "replicajunction.h"
 
 #define BSP_SYM LT(L_SYMBOLS, KC_BSPC)
 #define SPC_NAV LT(L_NAVIGATION, KC_SPC)
@@ -92,4 +92,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, L_SYMBOLS, L_NAVIGATION, L_MACROS);
 }
-

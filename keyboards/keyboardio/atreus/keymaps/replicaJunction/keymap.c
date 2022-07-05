@@ -15,7 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "replicaJunction.h"
+#include "replicajunction.h"
 
 #define BSP_SYM LT(L_SYMBOLS, KC_BSPC)
 #define SPC_NAV LT(L_NAVIGATION, KC_SPC)

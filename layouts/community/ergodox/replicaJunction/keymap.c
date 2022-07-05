@@ -15,7 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "replicaJunction.h"
+#include "replicajunction.h"
 
 // Most layers are defined in my userspace, but this keyboard has
 // an extra one.

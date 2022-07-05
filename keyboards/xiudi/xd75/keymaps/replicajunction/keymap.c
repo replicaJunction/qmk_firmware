@@ -15,7 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "replicaJunction.h"
+#include "replicajunction.h"
 
 // enum additional_keyboard_layers {
 //     L_RGB = _LAYER_SAFE_RANGE
