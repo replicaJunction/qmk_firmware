@@ -1,0 +1,50 @@
+// replicaJunction symbol combo definitions
+// 1.1
+
+COMB(  C_HASH,        KC_HASH,            KL_L12, KL_L13 )
+COMB(  C_PERC,        KC_PERC,            KL_L13, KL_L14 )
+COMB(  C_AT,          KC_AT,              KL_L14, KL_L15 )
+
+COMB(  C_GRV,         KC_GRV,             KL_R11, KL_R12 )
+COMB(  C_MINS,        KC_MINS,            KL_R12, KL_R13 )
+COMB(  C_COLN,        KC_COLN,            KL_R13, KL_R14 )
+COMB(  C_ASTR,        KC_ASTR,            KL_R12, KL_R14 )
+
+COMB(  C_TAB,         KC_TAB,             KL_LH2,  KL_LH3 )
+COMB(  C_ESC,         KC_ESC,             KL_LH3,  KL_LH4 )
+COMB(  C_DQUO,        KC_DQUO,            KL_LH2,  KL_LH4 )
+// COMB(  C_SCLN,        KC_SCLN,            KL_LH2,  KL_LH3, KL_LH4 )
+COMB(  C_NUMWORD,     NUMWORD,            KL_LH4,  KL_L25 )
+
+COMB(  C_CAPWORD,     CAPWORD,            KL_R21,  KL_RH2 )
+COMB(  C_EQL,         KC_EQL,             KL_RH2,  KL_RH3 )
+COMB(  C_UNDS,        KC_UNDS,            KL_RH3,  KL_RH4 )
+COMB(  C_QUOT,        KC_QUOT,            KL_RH2,  KL_RH4 )
+COMB(  C_ENT,         KC_ENT,             KL_RH2,  KL_RH3, KL_RH4 )
+
+COMB(  C_UNDO,        LCTL(KC_Z),         KL_L31, KL_L32 )
+COMB(  C_CUT,         LCTL(KC_X),         KL_L31, KL_L33 )
+COMB(  C_COPY,        LCTL(KC_C),         KL_L32, KL_L33 )
+COMB(  C_PASTE,       LCTL(KC_V),         KL_L33, KL_L34 )
+COMB(  C_SEL_ALL,     LCTL(KC_A),         KL_L31, KL_L34 )
+COMB(  C_FIND,        LCTL(KC_F),         KL_L34, KL_L35 )
+
+COMB(  C_CIRC,        KC_CIRC,            KL_R32, KL_R33 )
+COMB(  C_DLR,         KC_DLR,             KL_R33, KL_R34 )
+COMB(  C_AMPR,        KC_AMPR,            KL_R32, KL_R34 )
+SUBS(  C_DLR_UNDS,    "$_",               KL_R32, KL_R33, KL_R34 )
+COMB(  C_SLSH,        KC_SLSH,            KL_R32, KL_R35 )
+COMB(  C_BSLS,        KC_BSLS,            KL_R33, KL_R35 )
+
+// Numpad
+// COMB(  C_P12,         KC_LBRC,            KC_1,   KC_2 )
+// COMB(  C_P23,         KC_RBRC,            KC_2,   KC_3 )
+// COMB(  C_P45,         KC_LPRN,            KC_4,   KC_5 )
+// COMB(  C_P56,         KC_RPRN,            KC_5,   KC_6 )
+// COMB(  C_P78,         KC_LCBR,            KC_7,   KC_8 )
+// COMB(  C_P89,         KC_RCBR,            KC_8,   KC_9 )
+
+
+// Both hands
+// COMB(  C_NUMWORD,     NUMWORD,            KC_D, KC_H )
+// COMB(  C_CAPWORD,     CAPWORD,            KC_C, KC_QUOT )

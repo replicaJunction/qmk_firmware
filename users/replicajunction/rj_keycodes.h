@@ -15,14 +15,21 @@
  */
 
 #pragma once
-#include QMK_KEYBOARD_H
+#include "quantum.h"
 
 // Custom keycodes and macros
 enum userspace_custom_keycodes {
-    QK_MAKE = SAFE_RANGE,  // QMK make command
-    QK_FLSH,               // QMK flash command
+    QK_FLSH = SAFE_RANGE,  // QMK flash command
     QK_VERS,               // QMK version
 
+#ifdef USER_CALLUM_ONESHOT_ENABLE
+    COS_SFT,
+    COS_CTL,
+    COS_ALT,
+    COS_GUI,
+#endif
+
+#ifdef USER_PROGRAMMING_MACRO_KEYCODES
     // Programming macros
     PRG_EQ,                // ==
     PRG_NE,                // !=
@@ -33,25 +40,37 @@ enum userspace_custom_keycodes {
     FS_PIPE,               // |>        (F# pipe operator)
     FS_ARR,                // ->        (F# lambda / pattern matching)
     SHEBANG,               // #!
+#endif
 
-    // USER_CAPS_WORD_ENABLE
+#ifdef USER_CAPS_WORD_ENABLE
     CAPWORD,
+#endif
 
 #ifdef USER_NUM_WORD_ENABLE
     NUMWORD,
 #endif
 
-    // USER_ENABLE_CUSTOM_SHIFT_CODES
-    // Custom characters that send different symbols than usual when shifted
-    KCC_COM,                // , or !
-    KCC_DOT,                // . or @
-    KCC_QUO,                // ' or ~
+#ifdef USER_CANCEL_KEY_ENABLE
+    CANCEL,
+#endif
 
-    // USER_MOUSE_JIGGLE_ENABLE
+    // // USER_ENABLE_CUSTOM_SHIFT_CODES
+    // // Custom characters that send different symbols than usual when shifted
+    // KCC_COM,                // , or !
+    // KCC_DOT,                // . or @
+    // KCC_QUO,                // ' or ~
+
+#ifdef USER_MOUSE_JIGGLE_ENABLE
     MS_JIGL,
+#endif
 
-    // USER_ENABLE_SUPER_ALT_TAB
+#ifdef USER_SUPER_ALT_TAB_ENABLE
     SALTTAB,
+#endif
+
+#ifdef USER_REPEAT_KEY_ENABLE
+    REPEAT,
+#endif
 
     // USER_ENABLE_SECRETS
     K_SECR1,

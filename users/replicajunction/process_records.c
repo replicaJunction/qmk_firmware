@@ -14,8 +14,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include QMK_KEYBOARD_H
 #include "process_records.h"
+
+#ifdef COMBO_ENABLE
+#    include "g/keymap_combo.h"
+#endif
 
 uint8_t mod_state;
 
@@ -46,6 +49,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // https://github.com/qmk/qmk_firmware/blob/master/quantum/quantum.c
 
     if (!(
+#ifdef USER_REPEAT_KEY_ENABLE
+        process_record_repeat(keycode, record) &&
+#endif
+
+#ifdef USER_CALLUM_ONESHOT_ENABLE
+        process_record_callum_oneshot(keycode, record) &&
+#endif
+
 #ifdef USER_CAPS_WORD_ENABLE
         process_record_caps_word(keycode, record) &&
 #endif
@@ -66,16 +77,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
 
-    // Miscellaneous keycode handling
-    mod_state = get_mods();
-
     switch(keycode)
     {
-        case QK_MAKE: {
-            if (record->event.pressed)
-                SEND_STRING("qmk compile --keyboard " QMK_KEYBOARD " --keymap " QMK_KEYMAP);
-            return false;
-        }
         case QK_FLSH: {
             if (record->event.pressed) {
                 SEND_STRING("qmk flash --keyboard " QMK_KEYBOARD " --keymap " QMK_KEYMAP);
@@ -88,6 +91,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         }
+
+#ifdef USER_PROGRAMMING_MACRO_KEYCODES
         case PRG_EQ: {
             if (record->event.pressed) {
                 SEND_STRING("==");
@@ -143,6 +148,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         }
+#endif
     }
 
     return process_record_user_kb(keycode, record);

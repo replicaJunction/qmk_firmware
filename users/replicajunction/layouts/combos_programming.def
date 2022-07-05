@@ -1,0 +1,10 @@
+// replicaJunction programming ligature combos
+// 1.0
+
+// Left hand index, right hand 2 fingers
+SUBS(  C_DBL_EQL,     "==",               KL_L34,  KL_RH2,  KL_RH3  )
+SUBS(  C_NEQ,         "!=",               KL_L34,  KL_RH3,  KL_RH4  )
+SUBS(  C_LEQ,         "<=",               KL_L34,  KL_R32,  KL_R33  )
+SUBS(  C_GEQ,         ">=",               KL_L34,  KL_R33,  KL_R34  )
+SUBS(  C_SINGLE_ARR,  "->",               KL_L34,  KL_R12,  KL_R13  )
+SUBS(  C_DBL_ARR,     "=>",               KL_L34,  KL_R13,  KL_R14  )

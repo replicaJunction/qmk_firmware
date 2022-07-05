@@ -21,8 +21,12 @@
 // Transparent, but indicates that this key must be blocked (for example, a layer shift key)
 #define ooooooo KC_TRNS
 
+// Nothing
+#define xxxxxxx KC_NO
+
 
 #define SFT_TAB  LSFT(KC_TAB)
+#define SFT_G    LSFT(KC_G)
 #define WIN_TAB  LGUI(KC_TAB)
 #define WIN_L    LGUI(KC_L)
 #define WIN_V    LGUI(KC_V)
@@ -43,18 +47,11 @@
 #define OS_SALL LCTL(KC_A)
 #define OS_FIND LCTL(KC_F)
 
+// Windows 10 Snipping Tool
+#define OS_SNIP LGUI(LSFT(KC_S))
 
-// Home row modifiers
-#define GUI_A LGUI_T(KC_A)
-#define ALT_R LALT_T(KC_R)
-#define SFT_S LSFT_T(KC_S)
-#define CRT_T LCTL_T(KC_T) // we can't call this CTL_T because that name is taken!
-
-#define CRT_N RCTL_T(KC_N)
-#define SFT_E RSFT_T(KC_E)
-#define ALT_I RALT_T(KC_I)
-#define GUI_O RGUI_T(KC_O)
-
+// Ctrl+Alt+Delete
+#define CTALDEL LCTL(LALT(KC_DEL))
 
 // Mouse keys
 #define M_UP KC_MS_UP
@@ -72,7 +69,6 @@
 #define DESKLFT LCTL(LGUI(KC_LEFT))
 #define DESKRGT LCTL(LGUI(KC_RGHT))
 
-
 // Application-specific shortcuts
 
 // Search: defined in Everything Search Engine as the keypress to show/hide the window
@@ -83,3 +79,8 @@
 #define PTYRUN  LALT(KC_SPC)       // PowerToys Run
 #define PTYZONE LGUI(KC_GRV)       // PowerToys FancyZones
 #define PTYCOLR LGUI(LSFT(KC_C))   // PowerToys ColorPicker
+
+// PowerToys Run
+#define LAUNCH LALT(KC_SPC)
+
+#define PTYMUTE LGUI(KC_N)

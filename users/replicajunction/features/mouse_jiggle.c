@@ -41,6 +41,6 @@ bool process_record_mouse_jiggle(uint16_t keycode, const keyrecord_t *record) {
     }
 
     is_mouse_jiggle_active = true;
-    SEND_STRING("Mouse jiggler enabled");
+    SEND_STRING("OK");
     return false;
 }

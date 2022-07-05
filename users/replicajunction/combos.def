@@ -1,0 +1,8 @@
+#if defined(USER_LAYOUT_QWERTY)
+#    include "layouts/qwerty/combos.def"
+#else
+#    include "layouts/colemak_dh/combos.def"
+#endif
+
+#include "layouts/combos_symbols.def"
+#include "layouts/combos_programming.def"

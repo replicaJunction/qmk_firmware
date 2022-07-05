@@ -15,11 +15,14 @@
  */
 
 #pragma once
-#include QMK_KEYBOARD_H
 #include "rj_keycodes.h"
-#include "rj_layers.h"
+#include "layouts/kb_layout.h"
 #include "keycode_aliases.h"
 #include "version.h"
+
+#ifdef USER_CALLUM_ONESHOT_ENABLE
+#    include "features/callum_oneshot.h"
+#endif
 
 #ifdef USER_CAPS_WORD_ENABLE
 #    include "features/caps_word.h"
@@ -31,6 +34,10 @@
 
 #ifdef USER_NUM_WORD_ENABLE
 #    include "features/num_word.h"
+#endif
+
+#ifdef USER_REPEAT_KEY_ENABLE
+#    include "features/repeat.h"
 #endif
 
 #ifdef USER_SECRETS_ENABLE
