@@ -16,36 +16,35 @@
 
 #pragma once
 
-// Do not allow one macro to contain the other macro
-#define DYNAMIC_MACRO_NO_NESTING
+#define USER_CANCEL_KEY_ENABLE
+#define USER_ENABLE_HOME_ROW_MODS
 
-// "THE most important tap hold configuration setting"
-// https://precondition.github.io/home-row-mods#ignore-mod-tap-interrupt
-// https://docs.qmk.fm/#/tap_hold?id=ignore-mod-tap-interrupt
+// Default: 200
+#define TAPPING_TERM 200
+#define TAPPING_TERM_HOME_ROW_MODS (TAPPING_TERM + 100)
+#define TAPPING_TERM_PER_KEY
+
 #define IGNORE_MOD_TAP_INTERRUPT
-
-// This one is a style choice. Play with it both on and off to see which
-// one suits you better.
-// https://precondition.github.io/home-row-mods#permissive-hold
-// https://docs.qmk.fm/#/tap_hold?id=permissive-hold
 #define PERMISSIVE_HOLD
+#define PERMISSIVE_HOLD_PER_KEY
 
-// If you press a dual-role key for longer than TAPPING_TERM, then
-// release it without pressing another key, without this setting nothing
-// would happen. With this setting, it sends the key's tap function.
-// https://precondition.github.io/home-row-mods#retro-tapping
-#define RETRO_TAPPING
+#define ENABLE_COMPILE_KEYCODE
 
-// Disable some unused features to save space
-#undef LOCKING_SUPPORT_ENABLE
-#undef LOCKING_RESYNC_ENABLE
+// Default: 50
+#define COMBO_TERM 40
 
-/////
-// Flags for stuff in my userspace
+// #define COMBO_TERM_PER_COMBO
+// #define COMBO_VARIABLE_LEN
 
-#define USER_INCLUDE_GAMING_LAYER
-#define USER_INCLUDE_MACRO_LAYER
+#define COMBO_ONLY_FROM_LAYER 0
+
+#define ADAPTIVE_KEY_TERM TAPPING_TERM
+
+// Tapping a oneshot key this many times will lock it until tapped again
+// Default: 5
+#define ONESHOT_TAP_TOGGLE 2
+
 
 // "Super Alt-Tab"
 // https://docs.qmk.fm/#/feature_macros?id=super-alt%E2%86%AFtab
-#define USER_SUPER_ALT_TAB_TIMEOUT 500
+#define USER_SUPER_ALT_TAB_TIMEOUT 350
