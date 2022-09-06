@@ -2,7 +2,7 @@
 #include "quantum.h"
 
 // Number row; not on 40% boards
-#define NAV_L00 _______
+#define NAV_L00 RESET 
 #define NAV_L01 KC_F1
 #define NAV_L02 KC_F2
 #define NAV_L03 KC_F3
@@ -19,7 +19,7 @@
 #define NAV_R06 KC_F11
 
 // Top alpha row
-#define NAV_L10 _______
+#define NAV_L10 RESET
 #define NAV_L11 _______
 #define NAV_L12 _______
 #define NAV_L13 _______
