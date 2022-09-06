@@ -24,9 +24,9 @@ enum layers {
     L_BASE,
     L_GAMING,
     L_GAMING2,
+    L_NUMPAD,
     L_NAVIGATION,
     L_FUNC,
-    L_NUMPAD,
 };
 
 #define USER_LAYER_NUMBER L_NUMPAD
@@ -52,50 +52,51 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 [L_GAMING] = LAYOUT_split_3x6_3(
-    KC_LOCK,KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,                   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,
+    KC_GRV, KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,                   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,
     KC_LALT,KC_ESC, KC_A,   KC_S,   KC_D,   KC_F,                   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,
-    _______,LA_GAM2,KC_Z,   KC_X,   KC_C,   KC_V,                   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, LA_FN,
-                                    KC_LSFT,KC_SPC, KC_LCTL,KC_ENT, KC_BSPC,_______
+    KC_LOCK,LA_GAM2,KC_Z,   KC_X,   KC_C,   KC_V,                   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, LA_FN,
+                                    KC_LSFT,KC_SPC, KC_LCTL,KC_ENT, KC_BSPC,KC_BTN1
 ),
 
 
 [L_GAMING2] = LAYOUT_split_3x6_3(
-    _______,_______,KC_7,   KC_8,   KC_9,   KC_BTN3,                _______,_______,KC_UP,  _______,_______,_______,
-    _______,_______,KC_4,   KC_5,   KC_6,   KC_BTN2,                _______,KC_LEFT,KC_DOWN,KC_RGHT,_______,_______,
+    _______,KC_GRV, KC_7,   KC_8,   KC_9,   KC_BTN3,                _______,_______,KC_UP,  _______,_______,_______,
+    _______,KC_0,   KC_4,   KC_5,   KC_6,   KC_BTN2,                _______,KC_LEFT,KC_DOWN,KC_RGHT,_______,_______,
     _______,ooooooo,KC_1,   KC_2,   KC_3,   KC_BTN1,                _______,_______,_______,_______,_______,_______,
-                                    _______,_______,_______,_______,_______,_______
+                                    KC_LALT,_______,KC_LOCK,_______,_______,_______
 ),
 
 [L_NAVIGATION] = LAYOUT_split_3x6_3(
-    RESET,  NAV_L11,NAV_L12,NAV_L13,NAV_L14,NAV_L15,                NAV_R11,NAV_R12,NAV_R13,NAV_R14,NAV_R15,NAV_R16,
+    NAV_L10,NAV_L11,NAV_L12,NAV_L13,NAV_L14,NAV_L15,                NAV_R11,NAV_R12,NAV_R13,NAV_R14,NAV_R15,NAV_R16,
     NAV_L20,NAV_L21,NAV_L22,NAV_L23,NAV_L24,NAV_L25,                NAV_R21,NAV_R22,NAV_R23,NAV_R24,NAV_R25,NAV_R26,
     NAV_L30,NAV_L31,NAV_L32,NAV_L33,NAV_L34,NAV_L35,                NAV_R31,NAV_R32,NAV_R33,NAV_R34,NAV_R35,NAV_R36,
                                     _______,KC_BSPC,CTALDEL,_______,ooooooo,_______
 ),
 
 
-// [L_SYMBOLS] = LAYOUT_split_3x6_3(
-//     SYM_L10,SYM_L11,SYM_L12,SYM_L13,SYM_L14,SYM_L15,                SYM_R11,SYM_R12,SYM_R13,SYM_R14,SYM_R15,SYM_R16,
-//     SYM_L20,SYM_L21,SYM_L22,SYM_L23,SYM_L24,SYM_L25,                SYM_R21,SYM_R22,SYM_R23,SYM_R24,SYM_R25,SYM_R26,
-//     SYM_L30,SYM_L31,SYM_L32,SYM_L33,SYM_L34,SYM_L35,                SYM_R31,SYM_R32,SYM_R33,SYM_R34,SYM_R35,SYM_R36,
-//                                     _______,ooooooo,_______,_______,_______,_______
-// ),
+// Numbers and symbols
+[L_NUMPAD] = LAYOUT_split_3x6_3(
+    SYM_L10,SYM_L11,SYM_L12,SYM_L13,SYM_L14,SYM_L15,                SYM_R11,SYM_R12,SYM_R13,SYM_R14,SYM_R15,SYM_R16,
+    SYM_L20,SYM_L21,SYM_L22,SYM_L23,SYM_L24,SYM_L25,                SYM_R21,SYM_R22,SYM_R23,SYM_R24,SYM_R25,SYM_R26,
+    SYM_L30,SYM_L31,SYM_L32,SYM_L33,SYM_L34,SYM_L35,                SYM_R31,SYM_R32,SYM_R33,SYM_R34,SYM_R35,SYM_R36,
+                                    _______,KC_BSPC,CTALDEL,_______,ooooooo,_______
+),
 
 
 [L_FUNC] = LAYOUT_split_3x6_3(
     RESET,  QK_VERS,RGB_TOG,RGB_MOD,RGB_SPI,_______,                KC_VOLU,KC_F9,  KC_F10, KC_F11, KC_F12, TG_GAME,
-    _______,QK_FLSH,RGB_HUI,RGB_SAI,RGB_VAI,_______,                KC_MUTE,KC_F5,  KC_F6,  KC_F7,  KC_F8,  _______,
-    _______,QK_MAKE,K_SECR1,K_SECR2,K_SECR3,K_SECR4,                KC_VOLD,KC_F1,  KC_F2,  KC_F3,  KC_F4,  ooooooo,
+    _______,QK_MAKE,RGB_HUI,RGB_SAI,RGB_VAI,_______,                KC_MUTE,KC_F5,  KC_F6,  KC_F7,  KC_F8,  _______,
+    _______,_______,K_SECR1,K_SECR2,K_SECR3,K_SECR4,                KC_VOLD,KC_F1,  KC_F2,  KC_F3,  KC_F4,  ooooooo,
                                     _______,_______,_______,_______,_______,_______
 ),
 
 
-[L_NUMPAD] = LAYOUT_split_3x6_3(
-    _______,KC_HASH,KC_PERC,KC_LCBR,KC_RCBR,_______,                _______,KC_7,   KC_8,   KC_9,   _______,ooooooo,
-    _______,_______,_______,KC_LPRN,KC_RPRN,_______,                _______,KC_4,   KC_5,   KC_6,   _______,_______,
-    _______,KC_LT,  KC_GT,  KC_LBRC,KC_RBRC,_______,                KC_0,   KC_1,   KC_2,   KC_3,   KC_DOT, KC_COMM,
-                                    _______,_______,_______,_______,_______,_______
-),
+// [L_NUMPAD] = LAYOUT_split_3x6_3(
+//     _______,KC_HASH,KC_PERC,KC_LCBR,KC_RCBR,_______,                _______,KC_7,   KC_8,   KC_9,   _______,ooooooo,
+//     _______,_______,_______,KC_LPRN,KC_RPRN,_______,                _______,KC_4,   KC_5,   KC_6,   _______,_______,
+//     _______,KC_LT,  KC_GT,  KC_LBRC,KC_RBRC,_______,                KC_0,   KC_1,   KC_2,   KC_3,   KC_DOT, KC_COMM,
+//                                     _______,_______,_______,_______,_______,_______
+// ),
 
 
 // Template
@@ -141,7 +142,8 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
         keycode == COS_CTL ||
         keycode == COS_ALT ||
         keycode == COS_SFT ||
-        keycode == COS_GUI //||
+        keycode == COS_GUI ||
+        keycode == KL_RT3 // ||
         // keycode == OSL(L_SYMBOLS_LEFT_THUMB) ||
         // keycode == OSL(L_SYMBOLS_RIGHT_THUMB)
     ) {
@@ -150,6 +152,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
 
     return false;
 }
+
 #ifdef TAPPING_TERM_PER_KEY
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {

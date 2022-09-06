@@ -148,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,_______,_______,_______,_______,_______,_______,
     _______,QK_VERS,_______,DM_REC2,DM_REC1,DM_RSTP,_______,
     _______,QK_MAKE,_______,DM_PLY2,DM_PLY1,_______,
-    _______,QK_FLSH,K_SECR1,K_SECR2,K_SECR3,K_SECR4,_______,
+    _______,_______,K_SECR1,K_SECR2,K_SECR3,K_SECR4,_______,
     _______,_______,_______,ooooooo,_______,
                                             _______,_______,
                                                     _______,

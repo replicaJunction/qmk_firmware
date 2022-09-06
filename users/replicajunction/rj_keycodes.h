@@ -19,8 +19,7 @@
 
 // Custom keycodes and macros
 enum userspace_custom_keycodes {
-    QK_FLSH = SAFE_RANGE,  // QMK flash command
-    QK_VERS,               // QMK version
+    QK_VERS = SAFE_RANGE,
 
 #ifdef USER_CALLUM_ONESHOT_ENABLE
     COS_SFT,

@@ -16,29 +16,31 @@
 
 #pragma once
 
-#define USER_CANCEL_KEY_ENABLE
+// #define USER_CANCEL_KEY_ENABLE
 #define USER_ENABLE_HOME_ROW_MODS
 
-// Default: 200
-#define TAPPING_TERM 200
-#define TAPPING_TERM_HOME_ROW_MODS (TAPPING_TERM + 100)
-#define TAPPING_TERM_PER_KEY
+// Set the number/symbol layer to send numpad keycodes, not real number
+// row keycodes
+#define USER_USE_NUMPAD_KP_CODES
+
+#define ENABLE_COMPILE_KEYCODE
 
 #define IGNORE_MOD_TAP_INTERRUPT
 #define PERMISSIVE_HOLD
 #define PERMISSIVE_HOLD_PER_KEY
 
-#define ENABLE_COMPILE_KEYCODE
+// Default: 200
+#define TAPPING_TERM 200
+// #define TAPPING_TERM_HOME_ROW_MODS (TAPPING_TERM + 100)
+// #define TAPPING_TERM_PER_KEY
 
 // Default: 50
-#define COMBO_TERM 40
+#define COMBO_TERM (TAPPING_TERM / 4)
 
 // #define COMBO_TERM_PER_COMBO
 // #define COMBO_VARIABLE_LEN
 
 #define COMBO_ONLY_FROM_LAYER 0
-
-#define ADAPTIVE_KEY_TERM TAPPING_TERM
 
 // Tapping a oneshot key this many times will lock it until tapped again
 // Default: 5

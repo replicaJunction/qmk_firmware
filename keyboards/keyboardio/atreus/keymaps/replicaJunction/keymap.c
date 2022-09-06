@@ -72,8 +72,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [L_MACROS] = LAYOUT(
-    QK_MAKE,_______,DM_REC2,DM_REC1,DM_RSTP,                _______,SHEBANG,_______,_______,_______,
-    QK_FLSH,_______,DM_PLY2,DM_PLY1,_______,                PRG_NE, PRG_EQ, PRG_GEQ,PRG_LEQ,PRG_ARR,
+    _______,_______,DM_REC2,DM_REC1,DM_RSTP,                _______,SHEBANG,_______,_______,_______,
+    QK_MAKE,_______,DM_PLY2,DM_PLY1,_______,                PRG_NE, PRG_EQ, PRG_GEQ,PRG_LEQ,PRG_ARR,
     QK_VERS,_______,_______,_______,_______,_______,_______,_______,PS_ITEM,FS_PIPE,_______,FS_ARR,
     _______,_______,_______,_______,ooooooo,_______,_______,ooooooo,_______,_______,_______,_______
 )
