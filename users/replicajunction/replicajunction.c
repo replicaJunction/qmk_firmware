@@ -23,3 +23,95 @@ void keyboard_post_init_user_kb(void) { }
 void keyboard_post_init_user(void) {
     keyboard_post_init_user_kb();
 }
+
+#ifdef USER_ADAPTIVE_KEYS_ENABLE
+#    include "features/adaptive_keys.h"
+#endif
+
+#if defined(USER_CANCEL_KEY_ENABLE) && defined(USER_CALLUM_ONESHOT_ENABLE)
+bool is_oneshot_cancel_key(uint16_t keycode) {
+    if (
+        keycode == CANCEL
+    ) {
+        return true;
+    }
+
+    return false;
+}
+#endif
+
+#if defined(COMBO_TERM_PER_COMBO)
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+    switch (combo->keycode) {
+        case KL_LH1:
+        case KL_LH2:
+        case KL_LH3:
+        case KL_LH4:
+
+        case KL_RH2:
+        case KL_RH3:
+        case KL_RH4:
+        case KL_RH5:
+            return COMBO_TERM_HOME_ROW;
+
+        default:
+            return COMBO_TERM;
+    }
+}
+#endif
+
+
+#if defined(USER_CALLUM_ONESHOT_ENABLE)
+bool is_oneshot_ignored_key(uint16_t keycode) {
+    if (
+        keycode == COS_CTL ||
+        keycode == COS_ALT ||
+        keycode == COS_SFT ||
+        keycode == COS_GUI
+    ) {
+        return true;
+    }
+
+    return false;
+}
+#endif
+
+#ifdef TAPPING_TERM_PER_KEY
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KL_LH1:
+        case KL_LH2:
+        case KL_LH3:
+        case KL_LH4:
+
+        case KL_RH2:
+        case KL_RH3:
+        case KL_RH4:
+        case KL_RH5:
+            return TAPPING_TERM_HOME_ROW_MODS;
+
+        default:
+            return TAPPING_TERM;
+    }
+}
+#endif
+
+#ifdef PERMISSIVE_HOLD_PER_KEY
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    // Permissive hold tends to get in the way of home row mods for me
+    switch (keycode) {
+        case KL_LH1:
+        case KL_LH2:
+        case KL_LH3:
+        case KL_LH4:
+
+        case KL_RH2:
+        case KL_RH3:
+        case KL_RH4:
+        case KL_RH5:
+            return false;
+        default:
+            return true;
+    }
+}
+#endif

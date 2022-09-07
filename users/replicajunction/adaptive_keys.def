@@ -1,0 +1,5 @@
+#if defined(USER_LAYOUT_QWERTY)
+// noop
+#else
+#    include "layouts/colemak_dh/adaptive_keys.def"
+#endif

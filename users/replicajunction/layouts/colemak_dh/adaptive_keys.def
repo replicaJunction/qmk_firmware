@@ -1,0 +1,20 @@
+AK_SND_ONLY_START(KC_C)
+    R_SND(KC_X, KC_S)   // C-X -> CS
+
+AK_SND_ONLY_START(KC_D)
+    R_SND(KC_X, KC_G)   // D-X -> DG
+
+AK_SND_ONLY_START(KC_F)
+    R_SND(KC_P, KC_S)   // F-P -> FS
+
+AK_SND_ONLY_START(KC_L)
+    R_SND(KC_J, KC_K)   // L-J -> LK
+
+AK_SND_ONLY_START(KC_P)
+    R_SND(KC_F, KC_T)   // P-F -> PT
+
+AK_SND_ONLY_START(KC_S)
+    R_SND(KC_V, KC_C)   // S-V -> SC
+
+AK_SND_ONLY_START(KC_U)
+    R_SND(KC_Y, KC_E)   // U-Y -> UE

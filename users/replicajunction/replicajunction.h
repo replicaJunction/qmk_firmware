@@ -20,6 +20,10 @@
 #include "keycode_aliases.h"
 #include "version.h"
 
+#ifdef USER_ADAPTIVE_KEYS_ENABLE
+#    include "features/adaptive_keys.h"
+#endif
+
 #ifdef USER_CALLUM_ONESHOT_ENABLE
 #    include "features/callum_oneshot.h"
 #endif

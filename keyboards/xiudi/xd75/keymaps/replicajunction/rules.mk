@@ -1,4 +1,5 @@
 # Userspace options
+USER_ADAPTIVE_KEYS_ENABLE = yes
 USER_CALLUM_ONESHOT_ENABLE = yes
 USER_CAPS_WORD_ENABLE = yes
 USER_MOUSE_JIGGLE_ENABLE = yes
@@ -13,13 +14,13 @@ COMBO_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 KEY_LOCK_ENABLE = yes
 KEY_OVERRIDE_ENABLE = yes
+LEADER_ENABLE = yes
 
 # Extra features that are nice but takes space. Enable only if they're
 # used in the layout.
 WPM_ENABLE = no
 # EXTRAKEY_ENABLE = no        # For volume keys and similar
 # MOUSEKEY_ENABLE = no        # Them mouse keys yo
-LEADER_ENABLE = no
 TAP_DANCE_ENABLE = no
 # RGBLIGHT_ENABLE = no        # Keyboard RGB underglow
 RGB_MATRIX_ENABLE = no

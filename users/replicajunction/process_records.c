@@ -57,6 +57,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         process_record_callum_oneshot(keycode, record) &&
 #endif
 
+#ifdef USER_ADAPTIVE_KEYS_ENABLE
+        process_record_adaptive_keys(keycode, record) &&
+#endif
 #ifdef USER_CAPS_WORD_ENABLE
         process_record_caps_word(keycode, record) &&
 #endif

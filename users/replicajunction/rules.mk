@@ -3,6 +3,10 @@ SRC += replicajunction.c
 # Only load these source files if the features are enabled. Keyboards can
 # enable or disable these features in their own rules.mk files.
 
+ifeq ($(strip $(USER_ADAPTIVE_KEYS_ENABLE)), yes)
+	SRC += features/adaptive_keys.c
+    OPT_DEFS += -DUSER_ADAPTIVE_KEYS_ENABLE
+endif
 ifeq ($(strip $(USER_CALLUM_ONESHOT_ENABLE)), yes)
 	SRC += features/callum_oneshot.c
     OPT_DEFS += -DUSER_CALLUM_ONESHOT_ENABLE

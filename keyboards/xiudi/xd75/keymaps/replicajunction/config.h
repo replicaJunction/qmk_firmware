@@ -16,6 +16,8 @@
 
 #pragma once
 
+#define ADAPTIVE_TERM 200
+
 // #define USER_CANCEL_KEY_ENABLE
 #define USER_ENABLE_HOME_ROW_MODS
 
@@ -35,9 +37,9 @@
 // #define TAPPING_TERM_PER_KEY
 
 // Default: 50
-#define COMBO_TERM (TAPPING_TERM / 4)
-
-// #define COMBO_TERM_PER_COMBO
+#define COMBO_TERM 50
+#define COMBO_TERM_HOME_ROW 35
+#define COMBO_TERM_PER_COMBO
 // #define COMBO_VARIABLE_LEN
 
 #define COMBO_ONLY_FROM_LAYER 0
@@ -45,6 +47,9 @@
 // Tapping a oneshot key this many times will lock it until tapped again
 // Default: 5
 #define ONESHOT_TAP_TOGGLE 2
+
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 200
 
 
 // "Super Alt-Tab"

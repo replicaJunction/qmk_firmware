@@ -20,6 +20,10 @@
 __attribute__ ((weak))
 void matrix_scan_user_kb(void) { }
 
+#if defined(LEADER_ENABLE)
+LEADER_EXTERNS();
+#endif
+
 // Runs on every matrix scan. Be careful what goes here - you can really impact the
 // responsiveness of your keyboard if you add too much in this function.
 void matrix_scan_user(void) {
@@ -29,6 +33,25 @@ void matrix_scan_user(void) {
 
 #ifdef USER_SUPER_ALT_TAB_ENABLE
     matrix_scan_super_alt_tab();
+#endif
+
+#ifdef USER_ADAPTIVE_KEYS_ENABLE
+    matrix_scan_adaptive_keys();
+#endif
+
+#if defined(LEADER_ENABLE)
+    LEADER_DICTIONARY() {
+        leading = false;
+
+        #if defined(USER_NUM_WORD_ENABLE)
+        SEQ_TWO_KEYS(KC_T, KC_N) {
+            enable_num_word();
+        }
+        #endif
+
+        leader_end();
+    }
+
 #endif
 
     matrix_scan_user_kb();
