@@ -1,4 +1,4 @@
-/* Copyright 2021 Joshua T.
+/* Copyright 2021-2022 Joshua T.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,20 +16,32 @@
 
 #pragma once
 
-#define ADAPTIVE_TERM 200
+// Layer definitions
+enum layers {
+    L_BASE,
+    L_GAMING,
+    L_NUMBERS,
+    L_NAVIGATION,
+    L_FN,
+    L_MACROS,
+};
 
-// #define USER_CANCEL_KEY_ENABLE
-#define USER_ENABLE_HOME_ROW_MODS
+// Define layer aliases used in userspace functions, like kb_layout
+// and numword
+#define USER_LAYER_NUMBER L_NUMBERS
+#define USER_LAYER_FUNCTION L_FN
 
-// Set the number/symbol layer to send numpad keycodes, not real number
-// row keycodes
-#define USER_USE_NUMPAD_KP_CODES
+////////////////////////
+// QMK config settings
+////////////////////////
 
-#define ENABLE_COMPILE_KEYCODE
-
+// Gotta go fast
 #define IGNORE_MOD_TAP_INTERRUPT
 #define PERMISSIVE_HOLD
 #define PERMISSIVE_HOLD_PER_KEY
+
+// Enable the QK_MAKE keycode
+#define ENABLE_COMPILE_KEYCODE
 
 // Default: 200
 #define TAPPING_TERM 200
@@ -41,8 +53,7 @@
 #define COMBO_TERM_HOME_ROW 35
 #define COMBO_TERM_PER_COMBO
 // #define COMBO_VARIABLE_LEN
-
-#define COMBO_ONLY_FROM_LAYER 0
+#define COMBO_ONLY_FROM_LAYER L_BASE
 
 // Tapping a oneshot key this many times will lock it until tapped again
 // Default: 5
@@ -51,7 +62,19 @@
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 200
 
-
 // "Super Alt-Tab"
 // https://docs.qmk.fm/#/feature_macros?id=super-alt%E2%86%AFtab
 #define USER_SUPER_ALT_TAB_TIMEOUT 350
+
+////////////////////////
+// Userspace settings
+////////////////////////
+
+// #define USER_CANCEL_KEY_ENABLE
+#define USER_ENABLE_HOME_ROW_MODS
+
+#define ADAPTIVE_TERM 200
+
+// Set the number/symbol layer to send numpad keycodes, not real number
+// row keycodes
+#define USER_USE_NUMPAD_KP_CODES

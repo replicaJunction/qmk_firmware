@@ -1,4 +1,4 @@
-/* Copyright 2021 Joshua T.
+/* Copyright 2021-2022 Joshua T.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,25 +15,12 @@
  */
 
 
+// Be sure to include the local config.h before including the userspace
+// header, since the local config.h sets some user preferences like
+// "which layer is the numword layer"
+
 #include QMK_KEYBOARD_H
 #include "config.h"
-
-enum layers {
-    L_BASE,
-    L_GAMING,
-    L_NUMBERS,
-    L_NAVIGATION,
-    L_FN,
-    L_MACROS,
-};
-
-// num_word.c
-uint8_t NUMWORD_LAYER = L_NUMBERS;
-
-// kb_layout.h
-#define USER_LAYER_NUMBER L_NUMBERS
-#define USER_LAYER_FUNCTION L_FN
-
 #include "replicajunction.h"
 
 #define LA_NUM OSL(L_NUMBERS)
@@ -113,4 +100,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // layer_state_t layer_state_set_user(layer_state_t state) {
 //     return update_tri_layer_state(state, L_SYMBOLS, L_NAVIGATION, L_MACROS);
 // }
-

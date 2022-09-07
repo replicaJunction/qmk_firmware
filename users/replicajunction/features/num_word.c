@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "quantum.h"
 #include "num_word.h"
 
 static uint16_t num_word_timer = 0;
@@ -26,13 +27,13 @@ bool is_num_word_enabled(void) {
 void enable_num_word(void) {
     if (is_num_word_on) return;
     is_num_word_on = true;
-    layer_on(NUMWORD_LAYER);
+    layer_on(USER_LAYER_NUMBER);
 }
 
 void disable_num_word(void) {
     if (!is_num_word_on) return;
     is_num_word_on = false;
-    layer_off(NUMWORD_LAYER);
+    layer_off(USER_LAYER_NUMBER);
 }
 
 void toggle_num_word(void) {
