@@ -18,3 +18,7 @@ AK_SND_ONLY_START(KC_S)
 
 AK_SND_ONLY_START(KC_U)
     R_SND(KC_Y, KC_E)   // U-Y -> UE
+
+// not currently working with one-shot mods, so don't do this yet
+// AK_BOTH_START(KC_X, KC_X)
+    // R_FST(KC_C, KC_S)   // X-C -> SC

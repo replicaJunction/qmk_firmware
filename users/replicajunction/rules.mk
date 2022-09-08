@@ -46,6 +46,9 @@ ifeq ($(strip $(USER_ENABLE_HOME_ROW_MODS)), yes)
 	OPT_DEFS += -DUSER_ENABLE_HOME_ROW_MODS
 endif
 
+ifeq ($(strip $(LEADER_ENABLE)), yes)
+	SRC += leader.c
+endif
 # Keyboard layouts
 
 ifeq ($(strip $(USER_LAYOUT_QWERTY)), yes)

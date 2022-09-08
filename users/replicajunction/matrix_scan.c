@@ -14,15 +14,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include QMK_KEYBOARD_H
-#include "replicajunction.h"
+#include "matrix_scan.h"
 
 __attribute__ ((weak))
 void matrix_scan_user_kb(void) { }
-
-#if defined(LEADER_ENABLE)
-LEADER_EXTERNS();
-#endif
 
 // Runs on every matrix scan. Be careful what goes here - you can really impact the
 // responsiveness of your keyboard if you add too much in this function.
@@ -40,28 +35,7 @@ void matrix_scan_user(void) {
 #endif
 
 #if defined(LEADER_ENABLE)
-    LEADER_DICTIONARY() {
-        leading = false;
-
-        SEQ_ONE_KEY(KC_C) {
-            #if defined(USER_CAPS_WORD_ENABLE)
-                disable_caps_word();
-            #endif
-
-            #if defined(USER_NUM_WORD_ENABLE)
-                disable_num_word();
-            #endif
-
-            layer_clear();
-        }
-
-        SEQ_TWO_KEYS(KC_T, KC_N) {
-            layer_invert(USER_LAYER_NUMBER);
-        }
-
-        leader_end();
-    }
-
+    matrix_scan_leader();
 #endif
 
     matrix_scan_user_kb();
