@@ -62,6 +62,9 @@ bool should_terminate_num_word(uint16_t keycode, const keyrecord_t *record) {
         case KC_PSLS ... KC_PPLS:
         case KC_PDOT:
 
+        // One-shot layer toggles
+        case OSL(USER_LAYER_SYMBOLS):
+
         // Misc
         case KC_UNDS:
         case KC_BSPC:

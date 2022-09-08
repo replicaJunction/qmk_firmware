@@ -51,6 +51,10 @@ bool should_terminate_caps_word(uint16_t keycode, const keyrecord_t *record) {
         case KC_MINS:
         case KC_UNDS:
         case KC_BSPC:
+
+        // One-shot layer toggles
+        case OSL(USER_LAYER_SYMBOLS):
+
             return false;
 
         default:

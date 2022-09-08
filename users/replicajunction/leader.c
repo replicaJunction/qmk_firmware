@@ -26,12 +26,21 @@ void matrix_scan_leader(void) {
         SEQ_TWO_KEYS(KC_G, KC_SPC) {
             SEND_STRING("git ");
         }
-        SEQ_TWO_KEYS(KC_G, KC_S) {
-            SEND_STRING("git status");
-        }
 
         SEQ_TWO_KEYS(KC_G, KC_C) {
-            SEND_STRING("git commit");
+            SEND_STRING("git commit\n");
+        }
+
+        SEQ_TWO_KEYS(KC_G, KC_L) {
+            SEND_STRING("git pull\n");
+        }
+
+        SEQ_TWO_KEYS(KC_G, KC_S) {
+            SEND_STRING("git status\n");
+        }
+
+        SEQ_TWO_KEYS(KC_G, KC_U) {
+            SEND_STRING("git push\n");
         }
 
         SEQ_THREE_KEYS(KC_G, KC_C, KC_A) {

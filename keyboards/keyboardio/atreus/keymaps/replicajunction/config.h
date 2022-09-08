@@ -70,8 +70,8 @@
 // Default: 5
 #define ONESHOT_TAP_TOGGLE 2
 
-#define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT 400
+// #define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 500
 
 // "Super Alt-Tab"
 // https://docs.qmk.fm/#/feature_macros?id=super-alt%E2%86%AFtab
