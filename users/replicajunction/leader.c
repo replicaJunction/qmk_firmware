@@ -23,6 +23,9 @@ void matrix_scan_leader(void) {
         }
 
         // Git commands
+        SEQ_TWO_KEYS(KC_G, KC_SPC) {
+            SEND_STRING("git ");
+        }
         SEQ_TWO_KEYS(KC_G, KC_S) {
             SEND_STRING("git status");
         }
