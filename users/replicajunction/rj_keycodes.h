@@ -49,7 +49,7 @@ enum userspace_custom_keycodes {
     NUMWORD,
 #endif
 
-#ifdef USER_CANCEL_KEY_ENABLE
+#if defined(USER_CAPS_WORD_ENABLE) || defined(USER_NUM_WORD_ENABLE)
     CANCEL,
 #endif
 

@@ -23,7 +23,7 @@
 #include "config.h"
 #include "replicajunction.h"
 
-#define LA_NUM OSL(L_NUMBERS)
+#define LA_SYM OSL(L_SYMBOLS)
 #define LA_FN OSL(L_FN)
 
 #define SPC_NAV LT(L_NAVIGATION, KC_SPC)
@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_EQL,  KL_L11,  KL_L12,  KL_L13,  KL_L14,  KL_L15,  KC_LBRC, KC_BSLS, KC_RBRC, KL_R11,  KL_R12,  KL_R13,  KL_R14,  KL_R15,  KC_BSLS,
         KC_MINS, KL_LH1,  KL_LH2,  KL_LH3,  KL_LH4,  KL_L25,  SALTTAB, KC_UP,   KC_END,  KL_R21,  KL_RH2,  KL_RH3,  KL_RH4,  KL_RH5,  KC_QUOT,
         NUMWORD, KL_L31,  KL_L32,  KL_L33,  KL_L34,  KL_L35,  KC_LEFT, KC_DOWN, KC_RGHT, KL_R31,  KL_R32,  KL_R33,  KL_R34,  KL_R35,  CAPWORD,
-        KC_LCTL, KC_LGUI, KC_LALT, LA_FN,   KL_LT1,  KL_LT2,  KL_LT3,  KC_ENT,  KL_RT1,  KL_RT2,  KL_RT3,  LA_FN,   KC_RALT, KC_RGUI, KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, LA_SYM,  KL_LT1,  KL_LT2,  KL_LT3,  KC_ENT,  KL_RT1,  KL_RT2,  KL_RT3,  LA_FN,   KC_RALT, KC_RGUI, KC_RCTL
     ),
 
 
@@ -53,6 +53,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
     [L_NUMBERS] = LAYOUT_ortho_5x15(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, KC_LCBR, KC_RCBR, _______, _______, _______, _______, _______, _______, _______, KC_LT,   KC_GT,   _______, _______,
+        _______, KC_6,    KC_4,    KC_0,    KC_2,    _______, _______, _______, _______, _______, KC_3,    KC_1,    KC_5,    KC_7,    _______,
+        _______, _______, KC_LBRC, KC_RBRC, KC_8,    _______, _______, _______, _______, _______, KC_9,    KC_LPRN, KC_RPRN, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+
+
+    [L_SYMBOLS] = LAYOUT_ortho_5x15(
         SYM_L00, SYM_L01, SYM_L02, SYM_L03, SYM_L04, SYM_L05, SYM_L06, _______, SYM_R00, SYM_R01, SYM_R02, SYM_R03, SYM_R04, SYM_R05, SYM_R06,
         SYM_L10, SYM_L11, SYM_L12, SYM_L13, SYM_L14, SYM_L15, SYM_L16, _______, SYM_R10, SYM_R11, SYM_R12, SYM_R13, SYM_R14, SYM_R15, SYM_R16,
         SYM_L20, SYM_L21, SYM_L22, SYM_L23, SYM_L24, SYM_L25, SYM_L26, _______, SYM_R20, SYM_R21, SYM_R22, SYM_R23, SYM_R24, SYM_R25, SYM_R26,

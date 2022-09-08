@@ -146,6 +146,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         }
 #endif
+        #if defined(USER_CAPS_WORD_ENABLE) || defined(USER_NUM_WORD_ENABLE)
+        case CANCEL: {
+            #if defined(USER_CAPS_WORD_ENABLE)
+                disable_caps_word();
+            #endif
+            #if defined(USER_NUM_WORD_ENABLE)
+                disable_num_word();
+            #endif
+            layer_clear();
+            return false;
+        }
+        #endif
     }
 
     return process_record_user_kb(keycode, record);

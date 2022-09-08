@@ -55,51 +55,51 @@
 
 // Top alpha row
 #define SYM_L10 _______
-#define SYM_L11 _______
-#define SYM_L12 _______
-#define SYM_L13 KC_LCBR
-#define SYM_L14 KC_RCBR
-#define SYM_L15 _______
+#define SYM_L11 KC_GRV
+#define SYM_L12 KC_PLUS
+#define SYM_L13 KC_ASTR
+#define SYM_L14 _______
+#define SYM_L15 KC_TILD
 #define SYM_L16 _______
 
 #define SYM_R10 _______
 #define SYM_R11 _______
-#define SYM_R12 USER_NUMPAD_7
-#define SYM_R13 USER_NUMPAD_8
-#define SYM_R14 USER_NUMPAD_9
+#define SYM_R12 KC_CIRC
+#define SYM_R13 KC_DLR
+#define SYM_R14 KC_HASH
 #define SYM_R15 _______
 #define SYM_R16 _______
 
 // Home row
 #define SYM_L20 _______
-#define SYM_L21 _______
-#define SYM_L22 KC_PIPE
-#define SYM_L23 KC_LPRN
-#define SYM_L24 KC_RPRN
-#define SYM_L25 _______
+#define SYM_L21 KC_PIPE
+#define SYM_L22 KC_LCBR
+#define SYM_L23 KC_RCBR
+#define SYM_L24 KC_MINS
+#define SYM_L25 KC_EXLM
 #define SYM_L26 _______ // Not on Ergodox
 
 #define SYM_R20 _______ // Not on Ergodox
-#define SYM_R21 KC_COLN
-#define SYM_R22 USER_NUMPAD_4
-#define SYM_R23 USER_NUMPAD_5
-#define SYM_R24 USER_NUMPAD_6
-#define SYM_R25 USER_NUMPAD_PLUS
+#define SYM_R21 REPEAT
+#define SYM_R22 KC_QUES
+#define SYM_R23 KC_LBRC
+#define SYM_R24 KC_RBRC
+#define SYM_R25 _______
 #define SYM_R26 _______
 
 // Bottom alpha row
 #define SYM_L30 _______
-#define SYM_L31 KC_LT
-#define SYM_L32 KC_GT
-#define SYM_L33 KC_LBRC
-#define SYM_L34 KC_RBRC
+#define SYM_L31 KC_BSLS
+#define SYM_L32 KC_LT
+#define SYM_L33 KC_GT
+#define SYM_L34 KC_PERC
 #define SYM_L35 _______
 #define SYM_L36 _______
 
 #define SYM_R30 _______
-#define SYM_R31 USER_NUMPAD_0
-#define SYM_R32 USER_NUMPAD_1
-#define SYM_R33 USER_NUMPAD_2
-#define SYM_R34 USER_NUMPAD_3
-#define SYM_R35 USER_NUMPAD_DOT
+#define SYM_R31 KC_SLSH
+#define SYM_R32 KC_UNDS
+#define SYM_R33 KC_LPRN
+#define SYM_R34 KC_RPRN
+#define SYM_R35 KC_AMPR
 #define SYM_R36 _______

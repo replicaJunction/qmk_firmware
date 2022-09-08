@@ -67,4 +67,4 @@
 // Right hand thumb keys
 #define KL_RT1 KC_ENT
 #define KL_RT2 LT(L_NAVIGATION, KC_SPC)
-#define KL_RT3 OSL(USER_LAYER_NUMBER)
+#define KL_RT3 OSL(USER_LAYER_SYMBOLS)

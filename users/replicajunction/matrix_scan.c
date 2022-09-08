@@ -43,11 +43,21 @@ void matrix_scan_user(void) {
     LEADER_DICTIONARY() {
         leading = false;
 
-        #if defined(USER_NUM_WORD_ENABLE)
-        SEQ_TWO_KEYS(KC_T, KC_N) {
-            enable_num_word();
+        SEQ_ONE_KEY(KC_C) {
+            #if defined(USER_CAPS_WORD_ENABLE)
+                disable_caps_word();
+            #endif
+
+            #if defined(USER_NUM_WORD_ENABLE)
+                disable_num_word();
+            #endif
+
+            layer_clear();
         }
-        #endif
+
+        SEQ_TWO_KEYS(KC_T, KC_N) {
+            layer_invert(USER_LAYER_NUMBER);
+        }
 
         leader_end();
     }

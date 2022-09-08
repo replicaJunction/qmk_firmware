@@ -16,20 +16,29 @@
 
 #pragma once
 
-// Layer definitions
-enum layers {
-    L_BASE,
-    L_GAMING,
-    L_NUMBERS,
-    L_NAVIGATION,
-    L_FN,
-    L_MACROS,
-};
+// Layer definitions.
+// These need to be available for my userspace stuff, but this file
+// also gets included as an assembly file, so we can't use an enum
+// here. That results in this error:
+//     Error: unknown opcode `enum'
+
+#define L_BASE 0
+#define L_GAMING 1
+#define L_NUMBERS 2
+#define L_SYMBOLS 3
+#define L_NAVIGATION 4
+#define L_FN 5
+#define L_MACROS 6
 
 // Define layer aliases used in userspace functions, like kb_layout
 // and numword
 #define USER_LAYER_NUMBER L_NUMBERS
+#define USER_LAYER_SYMBOLS L_SYMBOLS
 #define USER_LAYER_FUNCTION L_FN
+
+// Define the layer to be placed on the escape LT()
+#define USER_LAYER_ESCAPE_COMBO L_SYMBOLS
+#define USER_LAYER_EQUALS_COMBO L_SYMBOLS
 
 ////////////////////////
 // QMK config settings
@@ -60,7 +69,7 @@ enum layers {
 #define ONESHOT_TAP_TOGGLE 2
 
 #define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT 200
+#define LEADER_TIMEOUT 300
 
 // "Super Alt-Tab"
 // https://docs.qmk.fm/#/feature_macros?id=super-alt%E2%86%AFtab

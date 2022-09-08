@@ -1,23 +1,37 @@
-// replicaJunction symbol combo definitions
-// 1.1
+// replicaJunction combo definitions
+// 1.2
+
+#if defined(USER_LAYER_ESCAPE_COMBO)
+#   define COMBO_ESCAPE_KEY LT(USER_LAYER_ESCAPE_COMBO, KC_ESC)
+#else
+#   define COMBO_ESCAPE_KEY KC_ESC
+#endif
+
+#if defined(USER_LAYER_EQUALS_COMBO)
+#   define COMBO_EQUALS_KEY LT(USER_LAYER_EQUALS_COMBO, KC_EQL)
+#else
+#   define COMBO_EQUALS_KEY KC_EQL
+#endif
 
 COMB(  C_HASH,        KC_HASH,            KL_L12, KL_L13 )
 COMB(  C_PERC,        KC_PERC,            KL_L13, KL_L14 )
 COMB(  C_AT,          KC_AT,              KL_L14, KL_L15 )
 
-COMB(  C_GRV,         KC_GRV,             KL_R11, KL_R12 )
-COMB(  C_MINS,        KC_MINS,            KL_R12, KL_R13 )
-COMB(  C_COLN,        KC_COLN,            KL_R13, KL_R14 )
-COMB(  C_ASTR,        KC_ASTR,            KL_R12, KL_R14 )
+COMB(  C_CANCEL,      CANCEL,             KL_R11, KL_R12 )
+COMB(  C_COLN,        KC_COLN,            KL_R12, KL_R13 )
+// COMB(  C_MINS,        KC_MINS,            KL_R13, KL_R14 )
+// COMB(  C_ASTR,        KC_ASTR,            KL_R12, KL_R14 )
 
 COMB(  C_TAB,         KC_TAB,             KL_LH2,  KL_LH3 )
-COMB(  C_ESC,         KC_ESC,             KL_LH3,  KL_LH4 )
+// COMB(  C_ESC,         KC_ESC,             KL_LH3,  KL_LH4 )
+COMB(  C_ESC,         COMBO_ESCAPE_KEY,   KL_LH3,  KL_LH4 )
 COMB(  C_DQUO,        KC_DQUO,            KL_LH2,  KL_LH4 )
 // COMB(  C_SCLN,        KC_SCLN,            KL_LH2,  KL_LH3, KL_LH4 )
 COMB(  C_NUMWORD,     NUMWORD,            KL_LH4,  KL_L25 )
 
 COMB(  C_CAPWORD,     CAPWORD,            KL_R21,  KL_RH2 )
-COMB(  C_EQL,         KC_EQL,             KL_RH2,  KL_RH3 )
+// COMB(  C_EQL,         KC_EQL,             KL_RH2,  KL_RH3 )
+COMB(  C_EQL,         COMBO_EQUALS_KEY,   KL_RH2,  KL_RH3 )
 COMB(  C_UNDS,        KC_UNDS,            KL_RH3,  KL_RH4 )
 COMB(  C_QUOT,        KC_QUOT,            KL_RH2,  KL_RH4 )
 COMB(  C_ENT,         KC_ENT,             KL_RH2,  KL_RH3, KL_RH4 )
@@ -39,15 +53,11 @@ SUBS(  C_DLR_UNDS,    "$_",               KL_R32, KL_R33, KL_R34 )
 COMB(  C_SLSH,        KC_SLSH,            KL_R32, KL_R35 )
 COMB(  C_BSLS,        KC_BSLS,            KL_R33, KL_R35 )
 
-// Numpad
-// COMB(  C_P12,         KC_LBRC,            KC_1,   KC_2 )
-// COMB(  C_P23,         KC_RBRC,            KC_2,   KC_3 )
-// COMB(  C_P45,         KC_LPRN,            KC_4,   KC_5 )
-// COMB(  C_P56,         KC_RPRN,            KC_5,   KC_6 )
-// COMB(  C_P78,         KC_LCBR,            KC_7,   KC_8 )
-// COMB(  C_P89,         KC_RCBR,            KC_8,   KC_9 )
-
-
-// Both hands
-// COMB(  C_NUMWORD,     NUMWORD,            KC_D, KC_H )
-// COMB(  C_CAPWORD,     CAPWORD,            KC_C, KC_QUOT )
+// Programming symbols
+// Left hand index, right hand 2 fingers
+SUBS(  C_DBL_EQL,     "==",               KL_L34,  KL_RH2,  KL_RH3  )
+SUBS(  C_NEQ,         "!=",               KL_L34,  KL_RH3,  KL_RH4  )
+SUBS(  C_LEQ,         "<=",               KL_L34,  KL_R32,  KL_R33  )
+SUBS(  C_GEQ,         ">=",               KL_L34,  KL_R33,  KL_R34  )
+SUBS(  C_SINGLE_ARR,  "->",               KL_L34,  KL_R12,  KL_R13  )
+SUBS(  C_DBL_ARR,     "=>",               KL_L34,  KL_R13,  KL_R14  )
