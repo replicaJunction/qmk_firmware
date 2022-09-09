@@ -2,13 +2,13 @@
 
 # Userspace options
 USER_CALLUM_ONESHOT_ENABLE = yes
-USER_CAPS_WORD_ENABLE = yes
 USER_NUM_WORD_ENABLE = yes
 USER_REPEAT_KEY_ENABLE = yes
 USER_SECRETS_ENABLE = yes
 # USER_SUPER_ALT_TAB_ENABLE = yes
 
 # Features to enable
+CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = yes
 
 # Extra features that are nice but takes space. Enable only if they're

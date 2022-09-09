@@ -28,10 +28,6 @@
 #    include "features/callum_oneshot.h"
 #endif
 
-#ifdef USER_CAPS_WORD_ENABLE
-#    include "features/caps_word.h"
-#endif
-
 #ifdef USER_MOUSE_JIGGLE_ENABLE
 #    include "features/mouse_jiggle.h"
 #endif

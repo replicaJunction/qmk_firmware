@@ -7,8 +7,8 @@ void matrix_scan_leader(void) {
         leading = false;
 
         SEQ_ONE_KEY(KC_C) {
-            #if defined(USER_CAPS_WORD_ENABLE)
-                disable_caps_word();
+            #if defined(CAPS_WORD_ENABLE)
+                caps_word_off();
             #endif
 
             #if defined(USER_NUM_WORD_ENABLE)

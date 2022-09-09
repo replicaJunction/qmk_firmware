@@ -15,11 +15,7 @@
 #endif
 
 // Right hand top row (1 = QWERTY Y)
-#ifdef USER_CAPS_WORD_ENABLE
-#    define KL_R01 CAPWORD
-#else
-#    define KL_R01 xxxxxxx
-#endif
+#define KL_R01 CAPS_WORD
 #define KL_R11 KC_J
 #define KL_R12 KC_L
 #define KL_R13 KC_U

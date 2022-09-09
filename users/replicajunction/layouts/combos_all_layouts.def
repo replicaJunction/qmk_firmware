@@ -29,7 +29,7 @@ COMB(  C_DQUO,        KC_DQUO,            KL_LH2,  KL_LH4 )
 // COMB(  C_SCLN,        KC_SCLN,            KL_LH2,  KL_LH3, KL_LH4 )
 COMB(  C_NUMWORD,     NUMWORD,            KL_LH4,  KL_L25 )
 
-COMB(  C_CAPWORD,     CAPWORD,            KL_R21,  KL_RH2 )
+COMB(  C_CAPWORD,     CAPS_WORD,          KL_R21,  KL_RH2 )
 // COMB(  C_EQL,         KC_EQL,             KL_RH2,  KL_RH3 )
 COMB(  C_EQL,         COMBO_EQUALS_KEY,   KL_RH2,  KL_RH3 )
 COMB(  C_MINS,        KC_MINS,            KL_RH3,  KL_RH4 )

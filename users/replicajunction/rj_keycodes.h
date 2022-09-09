@@ -41,15 +41,11 @@ enum userspace_custom_keycodes {
     SHEBANG,               // #!
 #endif
 
-#ifdef USER_CAPS_WORD_ENABLE
-    CAPWORD,
-#endif
-
 #ifdef USER_NUM_WORD_ENABLE
     NUMWORD,
 #endif
 
-#if defined(USER_CAPS_WORD_ENABLE) || defined(USER_NUM_WORD_ENABLE)
+#if defined(CAPS_WORD_ENABLE) || defined(USER_NUM_WORD_ENABLE)
     CANCEL,
 #endif
 

@@ -60,9 +60,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef USER_ADAPTIVE_KEYS_ENABLE
         process_record_adaptive_keys(keycode, record) &&
 #endif
-#ifdef USER_CAPS_WORD_ENABLE
-        process_record_caps_word(keycode, record) &&
-#endif
 #ifdef USER_MOUSE_JIGGLE_ENABLE
         process_record_mouse_jiggle(keycode, record) &&
 #endif
@@ -146,10 +143,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         }
 #endif
-        #if defined(USER_CAPS_WORD_ENABLE) || defined(USER_NUM_WORD_ENABLE)
+        #if defined(CAPS_WORD_ENABLE) || defined(USER_NUM_WORD_ENABLE)
         case CANCEL: {
-            #if defined(USER_CAPS_WORD_ENABLE)
-                disable_caps_word();
+            #if defined(CAPS_WORD_ENABLE)
+                caps_word_off();
             #endif
             #if defined(USER_NUM_WORD_ENABLE)
                 disable_num_word();

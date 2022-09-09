@@ -1,9 +1,9 @@
 # Userspace options
-USER_CAPS_WORD_ENABLE = yes
 USER_MOUSE_JIGGLE_ENABLE = yes
 USER_NUM_WORD_ENABLE = yes
 USER_SECRETS_ENABLE = yes
 
+CAPS_WORD_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 
 # Extra features that are nice but takes space. Enable only if they're

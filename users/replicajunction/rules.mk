@@ -12,11 +12,6 @@ ifeq ($(strip $(USER_CALLUM_ONESHOT_ENABLE)), yes)
     OPT_DEFS += -DUSER_CALLUM_ONESHOT_ENABLE
 endif
 
-ifeq ($(strip $(USER_CAPS_WORD_ENABLE)), yes)
-	SRC += features/caps_word.c
-    OPT_DEFS += -DUSER_CAPS_WORD_ENABLE
-endif
-
 ifeq ($(strip $(USER_MOUSE_JIGGLE_ENABLE)), yes)
 	SRC += features/mouse_jiggle.c
     OPT_DEFS += -DUSER_MOUSE_JIGGLE_ENABLE
