@@ -57,7 +57,7 @@
 #define KL_R33 KC_COMM
 #define KL_R34 KC_DOT
 #define KL_R35 KC_SLSH
-#define KL_R36 OSL(L_FUNC)
+#define KL_R36 OSL(USER_LAYER_FUNCTION)
 
 // Left hand thummb keys (2 is the "natural" resting key for the thumb)
 #define KL_LT1 KC_BSPC
