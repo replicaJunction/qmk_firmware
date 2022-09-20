@@ -72,6 +72,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef USER_SUPER_ALT_TAB_ENABLE
         process_record_super_alt_tab(keycode, record) &&
 #endif
+#ifdef USER_TAP_HOLD_ENABLE
+        process_record_tap_hold(keycode, record) &&
+#endif
         true)) {
         return false;
     }

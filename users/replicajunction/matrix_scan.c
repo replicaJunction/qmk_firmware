@@ -34,6 +34,10 @@ void matrix_scan_user(void) {
     matrix_scan_adaptive_keys();
 #endif
 
+#if defined(USER_TAP_HOLD_ENABLE)
+    matrix_scan_tap_hold();
+#endif
+
 #if defined(LEADER_ENABLE)
     matrix_scan_leader();
 #endif

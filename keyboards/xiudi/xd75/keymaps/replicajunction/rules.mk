@@ -5,14 +5,15 @@ USER_MOUSE_JIGGLE_ENABLE = yes
 USER_NUM_WORD_ENABLE = yes
 USER_REPEAT_KEY_ENABLE = yes
 USER_SECRETS_ENABLE = yes
-USER_SUPER_ALT_TAB_ENABLE = yes
+# USER_SUPER_ALT_TAB_ENABLE = yes
+# USER_TAP_HOLD_ENABLE = yes
 
 # Features to enable
 CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 KEY_LOCK_ENABLE = yes
-KEY_OVERRIDE_ENABLE = yes
+# KEY_OVERRIDE_ENABLE = yes
 LEADER_ENABLE = yes
 
 # Extra features that are nice but takes space. Enable only if they're

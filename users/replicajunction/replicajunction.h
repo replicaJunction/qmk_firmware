@@ -47,3 +47,7 @@
 #ifdef USER_SUPER_ALT_TAB_ENABLE
 #    include "features/super_alt_tab.h"
 #endif
+
+#ifdef USER_TAP_HOLD_ENABLE
+#    include "features/tap_hold.h"
+#endif

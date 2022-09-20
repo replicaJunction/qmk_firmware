@@ -17,4 +17,5 @@
 #pragma once
 #include "quantum.h"
 
+void register_key_to_repeat(uint16_t keycode);
 bool process_record_repeat(uint16_t keycode, const keyrecord_t *record);

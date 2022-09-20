@@ -28,5 +28,7 @@
 #    define KL_RH5 KL_R25
 #endif
 
-#include "symbols.h"
 #include "nav.h"
+#include "symbols_1.h"
+#include "symbols_2.h"
+#include "function.h"

@@ -15,7 +15,7 @@ bool process_record_adaptive_keys(uint16_t keycode, const keyrecord_t *record) {
       // don't interfere if modifiers are involved
       return true;
     }
-    if ((timer_elapsed32(prior_keydown) < ADAPTIVE_TERM)) {
+    if ((timer_elapsed32(prior_keydown) < USER_ADAPTIVE_TERM)) {
       return_state = true;
       unregister_code(KC_LSFT);
       unregister_code(KC_RSFT);
@@ -93,7 +93,7 @@ bool process_record_adaptive_keys(uint16_t keycode, const keyrecord_t *record) {
 }
 
 void matrix_scan_adaptive_keys(void) {
-  if (timer_elapsed32(prior_keydown) >= ADAPTIVE_TERM) { // 30 seconds
+  if (timer_elapsed32(prior_keydown) >= USER_ADAPTIVE_TERM) { // 30 seconds
     switch (prior_keycode) {
 #undef AK_BOTH_START
 #define AK_BOTH_START(key, default_key)                                        \

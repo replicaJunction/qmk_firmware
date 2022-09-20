@@ -32,6 +32,11 @@ ifeq ($(strip $(USER_SECRETS_ENABLE)), yes)
     OPT_DEFS += -DUSER_SECRETS_ENABLE
 endif
 
+ifeq ($(strip $(USER_TAP_HOLD_ENABLE)), yes)
+	SRC += features/tap_hold.c
+    OPT_DEFS += -DUSER_TAP_HOLD_ENABLE
+endif
+
 ifeq ($(strip $(USER_SUPER_ALT_TAB_ENABLE)), yes)
 	SRC += features/super_alt_tab.c
     OPT_DEFS += -DUSER_SUPER_ALT_TAB_ENABLE
@@ -47,11 +52,15 @@ endif
 # Keyboard layouts
 
 ifeq ($(strip $(USER_LAYOUT_QWERTY)), yes)
-	SRC += layouts/qwerty/overrides.c
 	OPT_DEFS += -DUSER_LAYOUT_QWERTY
+	ifeq ($(strip $(KEY_OVERRIDE_ENABLE)), yes)
+		SRC += layouts/qwerty/overrides.c
+	endif
 else
-	SRC += layouts/colemak_dh/overrides.c
 	OPT_DEFS += -DUSER_LAYOUT_COLEMAK_DH
+	ifeq ($(strip $(KEY_OVERRIDE_ENABLE)), yes)
+		SRC += layouts/colemak_dh/overrides.c
+	endif
 endif
 
 

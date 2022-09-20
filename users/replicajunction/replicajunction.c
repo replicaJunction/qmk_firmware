@@ -115,3 +115,53 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     }
 }
 #endif
+
+#if defined(USER_TAP_HOLD_ENABLE)
+#define DOUBLE_TAP(keycode) \
+    tap_code16(keycode); \
+    tap_code16(keycode)
+
+#define SYMBOL_PAIR_LEFT(left_keycode, right_keycode) \
+    tap_code16(left_keycode); \
+    tap_code16(right_keycode); \
+    tap_code16(KC_LEFT)
+
+bool is_tap_hold_keycode(uint16_t keycode) {
+    switch (keycode) {
+        case KC_UNDS:
+        case KC_LPRN:
+        case KC_LBRC:
+        case KC_LCBR:
+            return true;
+
+        default:
+            return false;
+    }
+}
+
+void tap_hold_send_tap(uint16_t keycode) {
+    tap_code16(keycode);
+}
+
+void tap_hold_send_hold(uint16_t keycode) {
+    switch (keycode) {
+        case KC_UNDS:
+            DOUBLE_TAP(keycode);
+            return;
+        case KC_LPRN:
+            SYMBOL_PAIR_LEFT(KC_LPRN, KC_RPRN);
+            return;
+        case KC_LBRC:
+            SYMBOL_PAIR_LEFT(KC_LBRC, KC_RBRC);
+            return;
+        case KC_LCBR:
+            SYMBOL_PAIR_LEFT(KC_LCBR, KC_RCBR);
+            return;
+        default:
+            tap_code16(keycode);
+            #if defined(USER_REPEAT_KEY_ENABLE)
+                register_key_to_repeat(keycode);
+            #endif
+    }
+}
+#endif

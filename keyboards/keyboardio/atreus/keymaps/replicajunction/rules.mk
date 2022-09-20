@@ -12,7 +12,7 @@ CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 KEY_LOCK_ENABLE = yes
-KEY_OVERRIDE_ENABLE = yes
+# KEY_OVERRIDE_ENABLE = yes
 LEADER_ENABLE = yes
 
 # Extra features that are nice but takes space. Enable only if they're

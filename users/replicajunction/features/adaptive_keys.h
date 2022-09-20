@@ -4,8 +4,8 @@
  */
 
 #pragma once
-#ifndef ADAPTIVE_TERM
-#    define ADAPTIVE_TERM 100
+#ifndef USER_ADAPTIVE_TERM
+#    define USER_ADAPTIVE_TERM 100
 #endif
 
 bool process_record_adaptive_keys(uint16_t keycode, const keyrecord_t *record);

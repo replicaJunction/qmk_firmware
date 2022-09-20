@@ -1,7 +1,7 @@
-#if defined(USER_LAYOUT_QWERTY)
-#    include "layouts/qwerty/combos.def"
-#else
-#    include "layouts/colemak_dh/combos.def"
-#endif
+// #if defined(USER_LAYOUT_QWERTY)
+// #    include "layouts/qwerty/combos.def"
+// #else
+// #    include "layouts/colemak_dh/combos.def"
+// #endif
 
-#include "layouts/combos_all_layouts.def"
+#include "layouts/combos.def"
