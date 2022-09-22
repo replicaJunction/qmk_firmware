@@ -38,10 +38,14 @@
 
 // Home row
 #define NAV_L20 _______
-#define NAV_L21 COS_GUI
-#define NAV_L22 COS_ALT
-#define NAV_L23 COS_SFT
-#define NAV_L24 COS_CTL // Homing key
+// #define NAV_L21 COS_GUI
+// #define NAV_L22 COS_ALT
+// #define NAV_L23 COS_SFT
+// #define NAV_L24 COS_CTL // Homing key
+#define NAV_L21 USER_MOD_GUI
+#define NAV_L22 USER_MOD_ALT
+#define NAV_L23 USER_MOD_SFT
+#define NAV_L24 USER_MOD_CTL // Homing key
 #define NAV_L25 _______
 #define NAV_L26 _______ // Not on Ergodox
 

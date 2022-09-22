@@ -28,6 +28,23 @@
 #    define KL_RH5 KL_R25
 #endif
 
+#if defined(USER_CALLUM_ONESHOT_ENABLE)
+#    define USER_MOD_CTL COS_CTL
+#    define USER_MOD_ALT COS_ALT
+#    define USER_MOD_SFT COS_SFT
+#    define USER_MOD_GUI COS_GUI
+#elif defined(USER_ONESHOT_ENABLE)
+#    define USER_MOD_CTL OSM(MOD_LCTL)
+#    define USER_MOD_ALT OSM(MOD_LALT)
+#    define USER_MOD_SFT OSM(MOD_LSFT)
+#    define USER_MOD_GUI OSM(MOD_LGUI)
+#else
+#    define USER_MOD_CTL KC_LCTL
+#    define USER_MOD_ALT KC_LALT
+#    define USER_MOD_SFT KC_LSFT
+#    define USER_MOD_GUI KC_LGUI
+#endif
+
 #include "nav.h"
 #include "symbols_1.h"
 #include "symbols_2.h"

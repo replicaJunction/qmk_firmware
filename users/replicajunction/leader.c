@@ -31,6 +31,10 @@ void matrix_scan_leader(void) {
             SEND_STRING("git commit\n");
         }
 
+        SEQ_TWO_KEYS(KC_G, KC_F) {
+            SEND_STRING("git fetch\n");
+        }
+
         SEQ_TWO_KEYS(KC_G, KC_L) {
             SEND_STRING("git pull\n");
         }

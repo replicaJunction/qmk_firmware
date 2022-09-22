@@ -45,10 +45,10 @@
 #else
 #    define FUN_L20 _______
 #endif
-#define FUN_L21 COS_GUI
-#define FUN_L22 COS_ALT
-#define FUN_L23 COS_SFT
-#define FUN_L24 COS_CTL // Homing key
+#define FUN_L21 USER_MOD_GUI
+#define FUN_L22 USER_MOD_ALT
+#define FUN_L23 USER_MOD_SFT
+#define FUN_L24 USER_MOD_CTL // Homing key
 #define FUN_L25 _______
 #define FUN_L26 _______ // Not on Ergodox
 

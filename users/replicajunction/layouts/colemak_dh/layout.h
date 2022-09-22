@@ -57,7 +57,7 @@
 
 // Left hand thummb keys (2 is the "natural" resting key for the thumb)
 #define KL_LT1 KC_BSPC
-#define KL_LT2 COS_SFT
+#define KL_LT2 USER_MOD_SFT // COS_SFT
 #define KL_LT3 REPEAT
 
 // Right hand thumb keys
